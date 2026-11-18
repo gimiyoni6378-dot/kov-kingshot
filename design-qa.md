@@ -135,3 +135,9 @@ Application error log: none after excluding unrelated extension messages. No acc
 Passing: defense-controls (free selection, exact70% refund, merge-paid basis, no dead-squad/double refund); defense-combat; defense engine (empty start/reset, placement, recruitment, legal ten-wave mixed win, failure and one-time rewards); defense-visuals; defense-balance (every one of108 starts empty/200G; about17 wins); current script output saves exactly17 wins. Recruitment/refund actions are intentionally preparation-only.
 
 No new character/scene assets were changed. The revised opening and controls were reviewed in the browser; no actionable P0/P1/P2 issue remains in this scoped change. Physical-phone viewport/performance and human win rate remain unmeasured; scripted outcomes are not a probability claim.
+
+## Contextual controls and unobstructed status strip
+
+Moved the recruit/refund menu into the battlefield below the selected pad, with stacked buttons and explicit accessible labels. Gate HP and wave now occupy a normal-flow strip above the canvas. Live Pages review confirmed the strip bottom equals the battlefield top, and the selected-pad menu stays within the battlefield.
+
+Browser checks: archer purchase 200→160, add 160→120, refund +56→176 and menu disappears; selecting the bottom-right infantry pad relocates the menu; starting battle hides it. The engine, combat, controls and visuals suites pass. Evidence: `/workspace/shared/kov-defense-contextual-controls.jpg`. Physical-phone viewport testing remains unmeasured; coarse-pointer CSS retains 44px action targets and reduces the offset on small screens.
