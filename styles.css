@@ -16,7 +16,7 @@ body{font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optim
 .story-stats label{font-size:10px}
 .main-nav{font-size:12px}
 .hero-social-proof{font-size:11px}
-.game-button{height:48px;border-radius:8px;background:#ae6137;border:1px solid #8e4c2d;box-shadow:0 2px 0 #85462c;color:#fffaf0;font-size:12px;letter-spacing:-.02em;transition:transform .15s,box-shadow .15s}
+.game-button{height:48px;border-radius:8px;background:#ae6137;border:1px solid #8e4c2d;box-shadow:0 2px 0 #85462c;color:#fffaf0;font-size:12px;letter-spacing:-.02em;white-space:nowrap;flex-wrap:nowrap;transition:transform .15s,box-shadow .15s}
 .game-button:hover{transform:translateY(1px);box-shadow:0 1px 0 #85462c}
 .game-button.secondary{background:#fffaf0;color:#536145;border-color:#c9bd9d;box-shadow:0 2px 0 #d7c9a5}
 .game-button.secondary:hover{box-shadow:0 1px 0 #d7c9a5}
