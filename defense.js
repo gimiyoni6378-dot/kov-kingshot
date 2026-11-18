@@ -14,7 +14,7 @@ const slotButtons=SLOTS.map((position,index)=>{
 });
 let mergeFlash=null;
 for(const button of document.querySelectorAll('[data-troop]'))button.addEventListener('click',()=>{
- selected=button.dataset.troop;for(const peer of document.querySelectorAll('[data-troop]')){const active=peer===button;peer.classList.toggle('selected',active);peer.setAttribute('aria-pressed',String(active));}
+ selected=button.dataset.troop;selectedSlot=null;for(const peer of document.querySelectorAll('[data-troop]')){const active=peer===button;peer.classList.toggle('selected',active);peer.setAttribute('aria-pressed',String(active));}
  tell(selected==='archer'?'궁병을 성벽 위 자리에 배치하세요.':`${TROOPS[selected].name}을 성문 앞 자리에 배치하세요.`);updateUI();
 });
 $('#sell').addEventListener('click',()=>{if(selectedSlot!==null)tell(game.sell(selectedSlot).message);updateUI();});
@@ -56,7 +56,7 @@ function updateUI(){
  const selectedArmy=selectedSlot!==null?game.slots[selectedSlot]:null;
  $('#sell').hidden=game.phase!=='prep'||!selectedArmy;
  updateUnitStats();
- $('#squad-summary').textContent=selectedArmy?`1단계 ${selectedArmy.counts[0]} · 2단계 ${selectedArmy.counts[1]} · 3단계 ${selectedArmy.counts[2]} · HP ${Math.ceil(squadHealth(selectedArmy).hp)}/${squadHealth(selectedArmy).maxHp}`:'같은 병종 · 같은 단계 5명 → 자동 합체';
+ $('#squad-summary').textContent=selectedArmy?`${TROOPS[selectedArmy.type].name} 부대 · 1단계 ${selectedArmy.counts[0]} · 2단계 ${selectedArmy.counts[1]} · 3단계 ${selectedArmy.counts[2]} · HP ${Math.ceil(squadHealth(selectedArmy).hp)}/${squadHealth(selectedArmy).maxHp}`:'같은 병종 · 같은 단계 5명 → 자동 합체';
  for(const card of document.querySelectorAll('[data-troop]'))card.disabled=game.phase!=='prep'||!assetsReady;
  if(['cleared','lost','won'].includes(game.phase)&&reportedPhase!==game.phase){
   reportedPhase=game.phase;$('#result').hidden=false;
