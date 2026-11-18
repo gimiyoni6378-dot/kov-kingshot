@@ -1,3 +1,4 @@
+import {authorIdentity,refreshAuthorRanks} from './author-ranks.js?v=1';
 import {client,user,showAuth,friendly} from './auth.js?v=2';
 const $=selector=>document.querySelector(selector);
 let postId,offset=0,version=0,loading=false;
@@ -19,7 +20,7 @@ async function load(reset=false){
   if(ticket!==version)return;if(error)throw error;
   for(const comment of data){
    const li=document.createElement('li'),meta=document.createElement('div'),name=document.createElement('strong'),time=document.createElement('time'),body=document.createElement('p'),remove=document.createElement('button');
-   meta.className='comment-meta';name.textContent=comment.nickname;time.dateTime=comment.created_at;time.textContent=new Date(comment.created_at).toLocaleDateString('ko-KR',{timeZone:'Asia/Seoul'});name.append(time);
+   meta.className='comment-meta';name.append(authorIdentity(comment));time.dateTime=comment.created_at;time.textContent=new Date(comment.created_at).toLocaleDateString('ko-KR',{timeZone:'Asia/Seoul'});name.append(time);
    body.textContent=comment.body;remove.type='button';remove.className='text-button';remove.textContent='삭제';remove.setAttribute('aria-label',`${comment.nickname}의 댓글 삭제`);remove.dataset.commentOwner=comment.author_id;remove.hidden=comment.author_id!==user?.id;
    remove.addEventListener('click',async()=>{
     if(comment.author_id!==user?.id || !confirm('댓글을 삭제할까요? 지급된 10P도 회수돼요.'))return;
@@ -32,6 +33,7 @@ async function load(reset=false){
    });
    meta.append(name,remove);li.append(meta,body);$('#comments-list').append(li);
   }
+  void refreshAuthorRanks(client);
   offset+=data.length;$('#comments-more').hidden=offset>=count;$('#comments-status').textContent=count?`댓글 ${count}개`:'첫 이야기를 남겨주세요.';
  }catch(error){if(ticket===version)$('#comments-status').textContent=setupError(error);}
  finally{if(ticket===version){loading=false;$('#comments-more').disabled=false;}}

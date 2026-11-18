@@ -22,3 +22,7 @@ The alliance details and ranking wording were supplied by the page requester. Up
 ## 성벽 지키기 회원·포인트 연결
 
 메뉴의 성벽 지키기는 로그인한 회원용입니다. 실제 게임 시작/포인트 적립에는 [Supabase 설정 안내](supabase/DEFENSE-SETUP.md)의 SQL과 Edge Function 배포가 필요합니다. GitHub Pages 배포만으로 서버 설정이 적용되지는 않습니다.
+
+## 글쓴이·댓글 작성자 등급
+
+`supabase/004-author-ranks.sql`을 SQL Editor에서 한 번 실행하면 갤러리 목록·상세·댓글의 닉네임 앞에 현재 Lv/TG 등급이 표시됩니다. 이 조회는 공개된 글·댓글 작성자의 등급만 반환하며 포인트 잔액이나 이메일을 공개하지 않습니다. 게임 Edge Function 재배포는 필요 없습니다. 등급 기준을 바꾸면 `ranks.js`와 이 SQL 함수의 기준도 함께 변경하세요.

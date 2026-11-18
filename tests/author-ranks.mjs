@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+const {parseHTML}=await import(process.env.DOM_MODULE||'linkedom');
+const {document}=parseHTML('<html><body><div class="gallery-toolbar"></div><main></main></body></html>');globalThis.document=document;
+const {paintAuthorRank,authorIdentity,refreshAuthorRanks}=await import('../author-ranks.js');
+const main=document.querySelector('main');
+const identity=authorIdentity({author_id:'one',nickname:'<img src=x onerror=alert(1)>'});main.append(identity);
+assert.equal(identity.querySelector('.author-nickname').textContent,'<img src=x onerror=alert(1)>');assert.equal(identity.querySelectorAll('img').length,0);
+let calls=0;await refreshAuthorRanks({rpc:async(name,args)=>{calls++;assert.equal(name,'kov_author_ranks');assert.deepEqual(args.p_authors,['one']);return {data:[{author_id:'one',rank_label:'Lv.30'}]};}});
+assert.equal(calls,1);assert.equal(identity.querySelector('.author-rank').textContent,'Lv.30');
+const badge=identity.querySelector('.author-rank');
+paintAuthorRank(badge,'TG8');assert.equal(badge.querySelector('img').getAttribute('src'),'./assets/tg/tg-8.webp');
+paintAuthorRank(badge,'TG9');assert.equal(badge.querySelector('.author-tg-generated').dataset.tier,'9');assert.equal(badge.textContent,'TG9');
+paintAuthorRank(badge,'TG10');assert.equal(badge.querySelector('.author-tg-generated').dataset.tier,'10');
+await refreshAuthorRanks({rpc:async()=>({error:{code:'PGRST202'}})});assert.equal(badge.textContent,'등급 미확인');assert.equal(document.querySelector('#author-rank-status').hidden,false);
+paintAuthorRank(badge,'Lv.0');assert.equal(badge.textContent,'등급 미확인');
+console.log('PASS: safe nickname rendering, batched current ranks, level/TG icons including9/10, no false Lv1 on failure');

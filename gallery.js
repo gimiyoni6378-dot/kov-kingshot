@@ -1,4 +1,5 @@
-import {openComments} from './comments.js?v=2';
+import {openComments} from './comments.js?v=3';
+import {authorIdentity,refreshAuthorRanks} from './author-ranks.js?v=1';
 import {client, user, authReady, showAuth, friendly} from './auth.js?v=2';
 const $ = (selector) => document.querySelector(selector);
 const menu = $('.main-nav');
@@ -23,12 +24,14 @@ function renderPost(post) {
   const image = document.createElement('img'); image.src = imageUrl(post.image_path); image.alt = post.title; image.loading = 'lazy';
   const copy = document.createElement('div'); copy.className = 'post-card-copy';
   const title = document.createElement('h3'); title.textContent = post.title;
-  const meta = document.createElement('p'); meta.textContent = `${post.nickname} · ${new Date(post.created_at).toLocaleDateString('ko-KR')}`;
+  const meta = document.createElement('p');meta.className='post-author';
+  const date=document.createElement('time');date.dateTime=post.created_at;date.textContent=new Date(post.created_at).toLocaleDateString('ko-KR',{timeZone:'Asia/Seoul'});
+  meta.append(authorIdentity(post),date);
   copy.append(title, meta); button.append(image, copy);
   button.addEventListener('click', () => {
     selectedPost = post;
     $('#detail-title').textContent = post.title; $('#detail-body').textContent = post.body;
-    $('#detail-author').textContent = meta.textContent;
+    $('#detail-author').replaceChildren(authorIdentity(post),date.cloneNode(true));
     $('#detail-image').src = image.src; $('#detail-image').alt = post.title;
     $('#delete-button').hidden = post.author_id !== user?.id;
     status('#detail-status', ''); $('#detail-dialog').showModal(); openComments(post.id);
@@ -45,6 +48,7 @@ async function loadPosts(reset = false) {
       .order('created_at', {ascending:false}).order('id', {ascending:false}).range(page * pageSize, (page + 1) * pageSize - 1);
     if (error) throw error;
     data.forEach(post => $('#post-grid').append(renderPost(post)));
+    void refreshAuthorRanks(client);
     $('#post-count').textContent = `${count}개의 기록`;
     status('#status', count ? '' : '아직 등록된 사진이 없어요. KOV의 첫 순간을 남겨주세요.');
     page += 1; $('#more-button').hidden = page * pageSize >= count;
@@ -100,3 +104,5 @@ $('#delete-button').addEventListener('click', async () => {
 
 if (await authReady) await loadPosts(true);
 else status('#status','갤러리에 연결하지 못했어요. 새로고침 후 다시 시도해주세요.');
+// Reflect points earned in another tab when returning from the game/mypage.
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&client)void refreshAuthorRanks(client);});
