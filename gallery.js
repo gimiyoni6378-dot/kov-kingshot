@@ -1,4 +1,4 @@
-import {openComments} from './comments.js?v=1';
+import {openComments} from './comments.js?v=2';
 import {client, user, authReady, showAuth, friendly} from './auth.js?v=2';
 const $ = (selector) => document.querySelector(selector);
 const menu = $('.main-nav');

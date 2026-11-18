@@ -29,9 +29,17 @@ create table if not exists public.point_events (
  created_at timestamptz not null default now(),
  unique(user_id,event_key),
  constraint point_event_amount check (
-  (kind='post' and delta=10) or (kind in ('comment','attendance') and delta=1)
-  or (kind='post_deleted' and delta=-10) or (kind='comment_deleted' and delta=-1)
+  (kind in ('post','comment') and delta=10) or (kind='attendance' and delta=1)
+  or (kind='post_deleted' and delta=-10) or (kind='comment_deleted' and delta=-10)
  )
+);
+-- Upgrade existing 1P comment awards AND reversals to 10P, without duplication.
+alter table public.point_events drop constraint if exists point_event_amount;
+update public.point_events set delta=case when kind='comment' then 10 else -10 end
+ where kind in ('comment','comment_deleted') and abs(delta)<>10;
+alter table public.point_events add constraint point_event_amount check (
+ (kind in ('post','comment') and delta=10) or (kind='attendance' and delta=1)
+ or (kind in ('post_deleted','comment_deleted') and delta=-10)
 );
 create index if not exists point_events_member on public.point_events(user_id,created_at desc,id desc);
 alter table public.point_events enable row level security;
@@ -45,7 +53,7 @@ language plpgsql security definer set search_path='' as $$
 declare activity text; amount integer;
 begin
  activity := case when TG_TABLE_NAME='gallery_posts' then 'post' else 'comment' end;
- amount := case when activity='post' then 10 else 1 end;
+ amount := 10;
  if TG_OP='INSERT' then
   insert into public.point_events(user_id,event_key,kind,delta)
   values(new.author_id,activity||':'||new.id::text,activity,amount)
@@ -73,7 +81,7 @@ insert into public.point_events(user_id,event_key,kind,delta,created_at)
  select author_id,'post:'||id::text,'post',10,created_at from public.gallery_posts
  on conflict(user_id,event_key) do nothing;
 insert into public.point_events(user_id,event_key,kind,delta,created_at)
- select author_id,'comment:'||id::text,'comment',1,created_at from public.gallery_comments
+ select author_id,'comment:'||id::text,'comment',10,created_at from public.gallery_comments
  on conflict(user_id,event_key) do nothing;
 
 create or replace function public.kov_check_in() returns boolean

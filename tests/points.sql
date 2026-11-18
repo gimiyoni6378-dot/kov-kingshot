@@ -29,7 +29,7 @@ insert into public.gallery_posts(author_id,nickname,title,body,image_path) value
 -- ID is generated, because clients cannot supply it (or created_at).
 insert into public.gallery_comments(post_id,author_id,nickname,body) values((select id from public.gallery_posts where image_path='new.jpg'),auth.uid(),'one','mine');
 do $$ begin
- if (public.kov_my_activity()->>'points')::int <> 22 then raise exception 'Content points wrong';end if;
+ if (public.kov_my_activity()->>'points')::int <> 31 then raise exception 'Content points wrong';end if;
 end $$;
 set request.jwt.claim.sub='22222222-2222-2222-2222-222222222222';
 insert into public.gallery_comments(post_id,author_id,nickname,body) values((select id from public.gallery_posts where image_path='new.jpg'),auth.uid(),'two','another member');
@@ -39,7 +39,7 @@ do $$ declare n int;begin
  if n<>0 then raise exception 'Other member deleted post';end if;
  delete from public.gallery_comments where author_id<>auth.uid();get diagnostics n=row_count;
  if n<>0 then raise exception 'Other member deleted comment';end if;
- if (public.kov_my_activity()->>'points')::int<>1 then raise exception 'Comment reward missing';end if;
+ if (public.kov_my_activity()->>'points')::int<>10 then raise exception 'Comment reward missing';end if;
 end $$;
 set request.jwt.claim.sub='11111111-1111-1111-1111-111111111111';
 delete from public.gallery_posts where id=(select id from public.gallery_posts where image_path='new.jpg');

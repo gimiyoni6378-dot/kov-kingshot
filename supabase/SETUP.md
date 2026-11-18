@@ -15,7 +15,7 @@ Account deletion cascades posts but requires separate cleanup of storage objects
 
 Run `002-points.sql` after `gallery.sql`. This migration includes existing posts exactly once. It is safe to rerun and preserves all point history.
 
-- Posts +10, comments +1, explicit attendance check-in +1 per Asia/Seoul calendar date.
+- Posts +10, comments +10, explicit attendance check-in +1 per Asia/Seoul calendar date.
 - Content awards run in the same database transaction as the content insert. Deletion adds an equal negative event; cascading comment deletions reverse each comment author's point. Reversed awards remain in private point history.
 - Point events cannot be inserted, updated or deleted by clients. Authenticated RPCs derive identity from `auth.uid()` and never accept a target user or amount. Only the owner can read their own ledger and dashboard.
 - There is no daily post/comment reward cap in this version. Attendance is capped at one/day by a unique key, including concurrent requests. Deleting an account removes its private ledger; this is separate from gallery storage cleanup noted above.
@@ -23,3 +23,5 @@ Run `002-points.sql` after `gallery.sql`. This migration includes existing posts
 - Dashboard counts reflect currently published content; points history includes awards and reversals. Check-in uses the database clock; tab focus refreshes the dashboard after a new KST day or activity in another tab.
 
 Checks: `node tests/ranks.mjs`. For isolated PostgreSQL integration checks, create a DISPOSABLE database and run `tests/points-bootstrap.sql`, `supabase/002-points.sql` twice, then `tests/points.sql` using `psql -v ON_ERROR_STOP=1`. These test files create roles and test accounts and must never run against production. The bootstrap models Supabase JWT identity/RLS; production Auth and Storage are not replaced by it.
+
+Comment rewards are 10P. Rerunning the current `002-points.sql` upgrades previous 1P comment awards and their reversals to 10P atomically. Deleted comments remain net-zero; active comments gain the difference, with no duplicate events.
