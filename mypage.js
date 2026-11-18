@@ -1,4 +1,4 @@
-import {renderRankEmblem} from './tg-badge.js?v=1';
+import {renderRankEmblem} from './tg-badge.js?v=2';
 import {client,user,authReady,showAuth,friendly} from './auth.js?v=2';
 import {rankForPoints,LEVEL_STEP,TG_STEP} from './ranks.js?v=1';
 const $ = selector => document.querySelector(selector);
