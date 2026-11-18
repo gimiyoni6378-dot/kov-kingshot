@@ -68,8 +68,12 @@ function updateUI(){
  $('#army-actions').hidden=game.phase!=='prep'||!selectedArmy;
  $('#sell').hidden=!selectedArmy;
  if(selectedArmy){
-  const spec=TROOPS[selectedArmy.type];$('#sell').textContent=`부대 회수 · +${game.refundValue(selectedSlot)}G`;
-  $('#add-unit').textContent=`${spec.name} +1명 · ${spec.cost}G`;
+  const position=SLOTS[selectedSlot],actions=$('#army-actions');
+  actions.style.left=`${position.x*100}%`;actions.style.top=`calc(${position.y*100}% + 40px)`;
+  const spec=TROOPS[selectedArmy.type];$('#sell').textContent=`회수 · +${game.refundValue(selectedSlot)}G`;
+  $('#sell').setAttribute('aria-label',`${selectedSlot+1}번 ${spec.name} 부대 회수 · ${game.refundValue(selectedSlot)}골드 환급`);
+  $('#add-unit').textContent=`추가 모집 · ${spec.cost}G`;
+  $('#add-unit').setAttribute('aria-label',`${selectedSlot+1}번 ${spec.name} 1명 추가 모집 · ${spec.cost}골드`);
   $('#add-unit').disabled=game.phase!=='prep'||game.gold<spec.cost||selectedArmy.counts[2]>=5;
  }
 
