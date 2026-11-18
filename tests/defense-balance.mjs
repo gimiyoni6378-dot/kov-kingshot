@@ -1,0 +1,9 @@
+import assert from 'node:assert/strict';
+import {runBatch} from '../scripts/simulate-defense.mjs';
+const suite=runBatch();
+assert.equal(suite.cases,108);
+assert.ok(suite.cleared10>=5,'There must be multiple legal winning plans');
+assert.ok(suite.cleared10<=25,'The sampled simple strategies must not make ten-wave victory trivial');
+assert.ok(suite.reached10<70,'Late-game entry should require preparation');
+assert.equal(suite.results.filter(run=>run.won&&run.weights.filter(w=>w>0).length===1).length,0,'Single-type recruitment should not dominate this strategy suite');
+console.log(`PASS: ${suite.reached10}/108 reach wave 10, ${suite.cleared10}/108 clear; mixed wins exist and sampled single-type policies fail`);
