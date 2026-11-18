@@ -35,3 +35,9 @@ CLI를 사용할 때는 저장소 루트에서 `supabase functions deploy defens
 반복 플레이의 횟수 제한은 없습니다. 합법적인 전략을 자동 실행하는 봇을 구별하는 기능은 포함하지 않습니다. 엔진이나 보상 규칙이 변경되면 `node scripts/build-defense-function.mjs` 실행 후 Edge Function도 다시 배포하세요. 진행 중인 판과 호환되지 않는 엔진 변경에는 replay/run 버전을 함께 올려야 합니다.
 
 Tests: `node tests/defense-rewards.mjs`. SQL 권한·중복·계정별 적립 테스트는 `tests/defense-rewards-sql.mjs`(PGLite 경로 지정)에서 실행합니다.
+
+## 난이도 강화 업데이트 (기존 설치 완료 시)
+
+SQL은 다시 실행하지 않습니다. Edge Functions → 기존 `defense-reward` → Code에서 `index.ts` 내용을 최신 `defense-reward-dashboard.ts` 전체로 교체한 뒤 Deploy updates를 누르세요. 기존 JWT 설정은 유지합니다. 새 함수를 추가로 만들지 않습니다.
+
+최신 함수는 GET 응답에 `balance_version: 2`를 반환합니다. 사이트는 이 값을 확인한 뒤 게임을 열기 때문에 기존 함수 상태에서는 ‘난이도 업데이트를 준비하고 있어요’ 안내가 나옵니다. 배포 후 게임에서 다시 연결 또는 새로고침하세요. 이전 업데이트 전에 시작한 판의 저장 기록은 이전 엔진으로 정산하고, 이후 새 판부터 강화된 규칙을 사용합니다.

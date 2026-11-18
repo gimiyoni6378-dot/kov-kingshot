@@ -1,8 +1,8 @@
-import {createAccountGame} from './defense-account.js?v=1';
-import {recordGame,rewardForStage} from './defense-replay.js?v=1';
+import {createAccountGame} from './defense-account.js?v=2';
+import {recordGame,rewardForStage} from './defense-replay.js?v=2';
 import {choosePad} from './defense-controls.js?v=1';
 import {formation,portraitLayout,RUN_FRAMES,runFrame,FX_RECTS} from './defense-visuals.js?v=1';
-import {DefenseGame,TROOPS,SLOTS,unitCount,highestTier,unitStats,squadHealth} from './defense-engine.js?v=3';
+import {DefenseGame,TROOPS,SLOTS,unitCount,highestTier,unitStats,squadHealth} from './defense-engine.js?v=4';
 const $=s=>document.querySelector(s),canvas=$('#world'),ctx=canvas.getContext('2d');
 const game=new DefenseGame();let selected='archer',selectedSlot=null,paused=false,speed=1,lastTime=0,assetsReady=false,noticeTime=0,reportedPhase='',reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let commands=recordGame(game),clearedStage=0,settled=null,settling=false,accumulator=0;

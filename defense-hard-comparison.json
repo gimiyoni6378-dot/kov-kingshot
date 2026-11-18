@@ -1,0 +1,617 @@
+{
+  "note": "108 deterministic scripted strategies; not human win probability",
+  "selected": 4,
+  "candidates": [
+    {
+      "config": {
+        "rewardFactor": 1.02,
+        "hpScale": 1,
+        "lateGrowth": 0.14,
+        "captainHp": 6000,
+        "warlordHp": 15000
+      },
+      "reached10": 30,
+      "cleared10": 17,
+      "reached5": 77,
+      "winners": [
+        {
+          "weights": [
+            0.8,
+            0.1,
+            0.1
+          ],
+          "budget": 0.55,
+          "method": "random",
+          "reached": 10,
+          "won": true,
+          "health": 3,
+          "deaths": 6,
+          "recruits": 56,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.8,
+            0.1,
+            0.1
+          ],
+          "budget": 0.8,
+          "method": "spread",
+          "reached": 10,
+          "won": true,
+          "health": 24,
+          "deaths": 12,
+          "recruits": 52,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.8,
+            0.1,
+            0.1
+          ],
+          "budget": 0.8,
+          "method": "random",
+          "reached": 10,
+          "won": true,
+          "health": 60,
+          "deaths": 12,
+          "recruits": 62,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.8,
+            0.1,
+            0.1
+          ],
+          "budget": 1,
+          "method": "spread",
+          "reached": 10,
+          "won": true,
+          "health": 74,
+          "deaths": 14,
+          "recruits": 61,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.8,
+            0.1,
+            0.1
+          ],
+          "budget": 1,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 93,
+          "deaths": 4,
+          "recruits": 63,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.5,
+            0.4,
+            0.1
+          ],
+          "budget": 0.55,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 27,
+          "deaths": 4,
+          "recruits": 59,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.5,
+            0.4,
+            0.1
+          ],
+          "budget": 0.8,
+          "method": "spread",
+          "reached": 10,
+          "won": true,
+          "health": 1,
+          "deaths": 7,
+          "recruits": 58,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.5,
+            0.4,
+            0.1
+          ],
+          "budget": 0.8,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 8,
+          "deaths": 2,
+          "recruits": 69,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.5,
+            0.4,
+            0.1
+          ],
+          "budget": 1,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 41,
+          "deaths": 6,
+          "recruits": 68,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.5,
+            0.1,
+            0.4
+          ],
+          "budget": 0.55,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 76,
+          "deaths": 5,
+          "recruits": 51,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.5,
+            0.1,
+            0.4
+          ],
+          "budget": 0.8,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 51,
+          "deaths": 5,
+          "recruits": 56,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.3,
+            0.5,
+            0.2
+          ],
+          "budget": 1,
+          "method": "spread",
+          "reached": 10,
+          "won": true,
+          "health": 16,
+          "deaths": 6,
+          "recruits": 65,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.3,
+            0.5,
+            0.2
+          ],
+          "budget": 1,
+          "method": "random",
+          "reached": 10,
+          "won": true,
+          "health": 29,
+          "deaths": 11,
+          "recruits": 67,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.4,
+            0.3,
+            0.3
+          ],
+          "budget": 0.8,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 100,
+          "deaths": 5,
+          "recruits": 61,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.4,
+            0.3,
+            0.3
+          ],
+          "budget": 1,
+          "method": "spread",
+          "reached": 10,
+          "won": true,
+          "health": 88,
+          "deaths": 6,
+          "recruits": 59,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.4,
+            0.3,
+            0.3
+          ],
+          "budget": 1,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 53,
+          "deaths": 6,
+          "recruits": 63,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.4,
+            0.3,
+            0.3
+          ],
+          "budget": 1,
+          "method": "random",
+          "reached": 10,
+          "won": true,
+          "health": 100,
+          "deaths": 2,
+          "recruits": 59,
+          "startingGold": 200,
+          "startingUnits": 0
+        }
+      ]
+    },
+    {
+      "config": {
+        "rewardFactor": 0.97,
+        "hpScale": 1,
+        "lateGrowth": 0.18,
+        "captainHp": 6600,
+        "warlordHp": 18000
+      },
+      "reached10": 24,
+      "cleared10": 7,
+      "reached5": 77,
+      "winners": [
+        {
+          "weights": [
+            0.8,
+            0.1,
+            0.1
+          ],
+          "budget": 0.8,
+          "method": "random",
+          "reached": 10,
+          "won": true,
+          "health": 34,
+          "deaths": 7,
+          "recruits": 63,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.8,
+            0.1,
+            0.1
+          ],
+          "budget": 1,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 86,
+          "deaths": 3,
+          "recruits": 62,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.5,
+            0.1,
+            0.4
+          ],
+          "budget": 0.55,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 33,
+          "deaths": 10,
+          "recruits": 49,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.5,
+            0.1,
+            0.4
+          ],
+          "budget": 0.8,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 30,
+          "deaths": 6,
+          "recruits": 54,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.3,
+            0.5,
+            0.2
+          ],
+          "budget": 1,
+          "method": "spread",
+          "reached": 10,
+          "won": true,
+          "health": 9,
+          "deaths": 7,
+          "recruits": 63,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.4,
+            0.3,
+            0.3
+          ],
+          "budget": 0.8,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 28,
+          "deaths": 5,
+          "recruits": 60,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.4,
+            0.3,
+            0.3
+          ],
+          "budget": 1,
+          "method": "random",
+          "reached": 10,
+          "won": true,
+          "health": 28,
+          "deaths": 11,
+          "recruits": 57,
+          "startingGold": 200,
+          "startingUnits": 0
+        }
+      ]
+    },
+    {
+      "config": {
+        "rewardFactor": 0.95,
+        "hpScale": 1,
+        "lateGrowth": 0.2,
+        "captainHp": 7000,
+        "warlordHp": 19000
+      },
+      "reached10": 19,
+      "cleared10": 3,
+      "reached5": 77,
+      "winners": [
+        {
+          "weights": [
+            0.5,
+            0.1,
+            0.4
+          ],
+          "budget": 0.8,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 46,
+          "deaths": 12,
+          "recruits": 53,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.4,
+            0.3,
+            0.3
+          ],
+          "budget": 0.8,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 85,
+          "deaths": 6,
+          "recruits": 57,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.4,
+            0.3,
+            0.3
+          ],
+          "budget": 1,
+          "method": "random",
+          "reached": 10,
+          "won": true,
+          "health": 16,
+          "deaths": 7,
+          "recruits": 58,
+          "startingGold": 200,
+          "startingUnits": 0
+        }
+      ]
+    },
+    {
+      "config": {
+        "rewardFactor": 0.92,
+        "hpScale": 1,
+        "lateGrowth": 0.2,
+        "captainHp": 7000,
+        "warlordHp": 20000
+      },
+      "reached10": 14,
+      "cleared10": 0,
+      "reached5": 79,
+      "winners": []
+    },
+    {
+      "config": {
+        "rewardFactor": 0.97,
+        "hpScale": 1.08,
+        "lateGrowth": 0.2,
+        "captainHp": 6800,
+        "warlordHp": 18000
+      },
+      "reached10": 15,
+      "cleared10": 4,
+      "reached5": 77,
+      "winners": [
+        {
+          "weights": [
+            0.8,
+            0.1,
+            0.1
+          ],
+          "budget": 0.8,
+          "method": "random",
+          "reached": 10,
+          "won": true,
+          "health": 20,
+          "deaths": 7,
+          "recruits": 63,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.8,
+            0.1,
+            0.1
+          ],
+          "budget": 1,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 60,
+          "deaths": 8,
+          "recruits": 62,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.5,
+            0.1,
+            0.4
+          ],
+          "budget": 0.8,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 4,
+          "deaths": 6,
+          "recruits": 54,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.4,
+            0.3,
+            0.3
+          ],
+          "budget": 0.8,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 16,
+          "deaths": 5,
+          "recruits": 60,
+          "startingGold": 200,
+          "startingUnits": 0
+        }
+      ]
+    },
+    {
+      "config": {
+        "rewardFactor": 0.95,
+        "hpScale": 1,
+        "lateGrowth": 0.24,
+        "captainHp": 7200,
+        "warlordHp": 21000
+      },
+      "reached10": 18,
+      "cleared10": 2,
+      "reached5": 77,
+      "winners": [
+        {
+          "weights": [
+            0.5,
+            0.1,
+            0.4
+          ],
+          "budget": 0.8,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 15,
+          "deaths": 12,
+          "recruits": 53,
+          "startingGold": 200,
+          "startingUnits": 0
+        },
+        {
+          "weights": [
+            0.4,
+            0.3,
+            0.3
+          ],
+          "budget": 0.8,
+          "method": "focus",
+          "reached": 10,
+          "won": true,
+          "health": 61,
+          "deaths": 6,
+          "recruits": 57,
+          "startingGold": 200,
+          "startingUnits": 0
+        }
+      ]
+    }
+  ]
+}

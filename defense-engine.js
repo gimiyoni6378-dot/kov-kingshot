@@ -5,7 +5,7 @@ export const TROOPS={
 };
 export const START_GOLD=200;
 export const CLEAR_GOLD=[70,80,90,100,140,130,150,170,190,260];
-export const STANDARD_BALANCE={rewardFactor:1.02,hpScale:1,lateGrowth:.14,captainHp:6000,warlordHp:15000};
+export const STANDARD_BALANCE={rewardFactor:.97,hpScale:1.08,lateGrowth:.2,captainHp:6800,warlordHp:18000};
 export const SLOTS=[{x:.28,y:.255,wall:true},{x:.5,y:.255,wall:true},{x:.72,y:.255,wall:true},{x:.27,y:.585,wall:false},{x:.5,y:.585,wall:false},{x:.73,y:.585,wall:false}];
 export function unitStats(type,tier=1){
  const spec=TROOPS[type];if(!spec||![1,2,3].includes(tier))return null;

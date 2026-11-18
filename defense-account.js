@@ -1,5 +1,5 @@
 import {client,user,authReady,showAuth,friendly} from './auth.js?v=2';
-import {REPLAY_VERSION} from './defense-replay.js';
+import {REPLAY_VERSION,BALANCE_VERSION} from './defense-replay.js?v=2';
 const $=s=>document.querySelector(s);
 export function createAccountGame(onSessionChange){
  let run=null,member=null,ticket=0,busy=false;
@@ -13,6 +13,9 @@ export function createAccountGame(onSessionChange){
   if(!member){gate('로그인하고 성벽을 지켜보세요. 보상은 내 계정에 적립돼요.');return;}
   gate('게임 계정을 연결하고 있어요…');
   try{
+   const {data:server,error:serverError}=await client.functions.invoke('defense-reward',{method:'GET'});
+   if(serverError||server?.balance_version!==BALANCE_VERSION)throw new Error('난이도 업데이트를 준비하고 있어요. 운영자가 보상 함수를 업데이트하면 다시 연결해주세요.');
+   if(attempt!==ticket||user?.id!==id)return;
    const pending=storage.get(id);
    if(pending){const {data,error}=await client.functions.invoke('defense-reward',{body:pending});if(error||data?.error)throw new Error('이전 게임의 보상 저장이 남아 있어요. 다시 연결을 눌러 재시도해주세요.');storage.remove(id);}
    if(attempt!==ticket||user?.id!==id)return;
@@ -26,7 +29,7 @@ export function createAccountGame(onSessionChange){
  async function settle(commands){
   if(busy||!run||user?.id!==member)throw new Error('계정 연결을 확인해주세요.');
   busy=true;const id=member,runId=run.id;
-  const body={run_id:runId,version:REPLAY_VERSION,commands:structuredClone(commands)};
+  const body={run_id:runId,version:REPLAY_VERSION,balance_version:BALANCE_VERSION,commands:structuredClone(commands)};
   storage.set(id,body);
   try{
    const {data,error}=await client.functions.invoke('defense-reward',{body});
@@ -41,5 +44,5 @@ export function createAccountGame(onSessionChange){
  let previous;
  document.addEventListener('kov:session',()=>{if(previous!==user?.id){previous=user?.id;open();}});
  authReady.then(ok=>{if(ok&&previous===undefined){previous=user?.id;open();}else if(!ok)gate('회원 서비스에 연결하지 못했어요. 새로고침해주세요.');});
- return {get ready(){return Boolean(run)&&member===user?.id&&!busy;},settle,restart:open,checkpoint(commands){if(run&&member===user?.id)storage.set(member,{run_id:run.id,version:REPLAY_VERSION,commands:structuredClone(commands)});}};
+ return {get ready(){return Boolean(run)&&member===user?.id&&!busy;},settle,restart:open,checkpoint(commands){if(run&&member===user?.id)storage.set(member,{run_id:run.id,version:REPLAY_VERSION,balance_version:BALANCE_VERSION,commands:structuredClone(commands)});}};
 }

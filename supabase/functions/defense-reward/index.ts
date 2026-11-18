@@ -1,9 +1,10 @@
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.49.8';
-import {verifyReplay,REPLAY_VERSION} from './replay.js';
-const headers={'Access-Control-Allow-Origin':'https://gimiyoni6378-dot.github.io','Access-Control-Allow-Headers':'authorization, x-client-info, apikey, content-type','Access-Control-Allow-Methods':'POST, OPTIONS','Content-Type':'application/json'};
+import {verifyRunReplay,REPLAY_VERSION,BALANCE_VERSION} from './replay.js';
+const headers={'Access-Control-Allow-Origin':'https://gimiyoni6378-dot.github.io','Access-Control-Allow-Headers':'authorization, x-client-info, apikey, content-type','Access-Control-Allow-Methods':'GET, POST, OPTIONS','Content-Type':'application/json'};
 const reply=(data:unknown,status=200)=>new Response(JSON.stringify(data),{status,headers});
 Deno.serve(async req=>{
  if(req.method==='OPTIONS')return new Response(null,{status:204,headers});
+ if(req.method==='GET')return reply({balance_version:BALANCE_VERSION,supported_balance_versions:[1,2]});
  if(req.method!=='POST')return reply({error:'POST required'},405);
  try{
   const token=req.headers.get('Authorization')?.replace(/^Bearer\s+/i,'');if(!token)return reply({error:'로그인이 필요해요.'},401);
@@ -18,7 +19,7 @@ Deno.serve(async req=>{
   let verified={cleared:run.cleared,ticks:0};
   if(!run.finished_at){
    if(Date.now()-Date.parse(run.created_at)>86400000)return reply({error:'게임 기록이 만료됐어요. 새로 시작해주세요.'},400);
-   try{verified=verifyReplay(body.commands);}catch{return reply({error:'플레이 기록 검증에 실패했어요.'},400);}
+   try{verified=verifyRunReplay(body.commands,body.balance_version??1,run.created_at);}catch{return reply({error:'플레이 기록 검증에 실패했어요.'},400);}
   }
   const {data,error}=await admin.rpc('kov_defense_finish',{p_run:run.id,p_member:user.id,p_cleared:verified.cleared,p_ticks:verified.ticks});
   if(error){console.error('Defense settlement failed',error.code);return reply({error:'보상을 저장하지 못했어요. 잠시 후 다시 시도해주세요.'},409);}
