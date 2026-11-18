@@ -1,0 +1,1 @@
+{"name":"kov-kingshot","private":true,"type":"module","scripts":{"dev":"node scripts/preview.mjs","test:defense":"node tests/defense.mjs"}}
