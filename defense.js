@@ -69,7 +69,7 @@ function updateUI(){
  $('#sell').hidden=!selectedArmy;
  if(selectedArmy){
   const position=SLOTS[selectedSlot],actions=$('#army-actions');
-  actions.style.left=`${position.x*100}%`;actions.style.top=`calc(${position.y*100}% + 40px)`;
+  actions.style.left=`${position.x*100}%`;actions.style.top=`calc(${position.y*100}% + var(--army-menu-offset,40px))`;
   const spec=TROOPS[selectedArmy.type];$('#sell').textContent=`회수 · +${game.refundValue(selectedSlot)}G`;
   $('#sell').setAttribute('aria-label',`${selectedSlot+1}번 ${spec.name} 부대 회수 · ${game.refundValue(selectedSlot)}골드 환급`);
   $('#add-unit').textContent=`추가 모집 · ${spec.cost}G`;

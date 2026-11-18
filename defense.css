@@ -16,5 +16,5 @@
 .army-actions button{width:100%;min-height:36px;padding:6px 5px;border:1px solid #b39256;border-radius:6px;font-size:11px;font-weight:800;white-space:nowrap;box-shadow:0 1px #2f251d}
 .army-actions #add-unit{background:#6f8b3c;color:#fff4d6;border-color:#a8be70}.army-actions #sell{background:#f0d8af;color:#79502e}.army-actions button:disabled{opacity:.5}
 .selection-info{margin-top:7px;text-align:center}.start-button:disabled{font-size:18px;letter-spacing:0}
-@media(max-width:450px){.battle-hud{padding:8px 12px;gap:6px 10px}.wave-badge{font-size:10px;padding:5px 7px}.health-track{height:22px}.army-actions{width:116px}.start-button:disabled{font-size:17px}}
+@media(max-width:450px){.battle-hud{padding:8px 12px;gap:6px 10px}.wave-badge{font-size:10px;padding:5px 7px}.health-track{height:22px}.army-actions{width:116px;--army-menu-offset:34px}.start-button:disabled{font-size:17px}}
 @media(pointer:coarse){.army-actions button{min-height:44px}}
