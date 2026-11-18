@@ -1,0 +1,32 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+const {PGlite}=await import(process.env.PGLITE_MODULE||'@electric-sql/pglite');
+const db=new PGlite();
+const member='11111111-1111-1111-1111-111111111111',other='22222222-2222-2222-2222-222222222222';
+await db.exec('create role service_role nologin bypassrls;');
+for(const path of ['tests/points-bootstrap.sql','supabase/002-points.sql','supabase/003-defense-rewards.sql','supabase/003-defense-rewards.sql'])await db.exec(await readFile(new URL('../'+path,import.meta.url),'utf8'));
+const scalar=async(sql,params=[])=>Object.values((await db.query(sql,params)).rows[0])[0];
+const asUser=async id=>{await db.exec('reset role');await db.query("select set_config('request.jwt.claim.sub',$1,false)",[id]);await db.exec('set role authenticated');};
+await asUser(member);
+const first=await scalar('select public.kov_defense_begin()');assert.equal((await scalar('select public.kov_defense_begin()')).id,first.id);
+await assert.rejects(db.query('select public.kov_defense_finish($1,$2,10,0)',[first.id,member]),/permission denied/);
+await assert.rejects(db.query("insert into public.point_events(user_id,event_key,kind,delta) values($1,'fake','defense',100)",[member]),/permission denied/);
+await asUser(other);assert.equal(await scalar('select count(*) from public.defense_runs where id=$1',[first.id]),0);
+await db.exec('reset role');
+await assert.rejects(db.query('select public.kov_defense_finish($1,$2,10,0)',[first.id,other]),/Unknown game session/);
+await assert.rejects(db.query('select public.kov_defense_finish($1,$2,10,360000)',[first.id,member]),/too quickly/);
+await db.exec('set role service_role');
+let result=await scalar('select public.kov_defense_finish($1,$2,5,0)',[first.id,member]);assert.equal(result.awarded,30);
+result=await scalar('select public.kov_defense_finish($1,$2,10,0)',[first.id,member]);assert.equal(result.awarded,30,'Retry cannot upgrade a settled run');
+await asUser(member);assert.equal(await scalar("select count(*) from public.point_events where kind='defense'"),1);
+assert.equal((await scalar('select public.kov_my_activity()')).points,40,'Existing post10 plus defense30');
+for(const [stage,points] of [[4,0],[6,40],[7,40],[8,40],[9,50],[10,100]]){
+ const run=await scalar('select public.kov_defense_begin()');
+ await db.exec('reset role;set role service_role');
+ assert.equal((await scalar('select public.kov_defense_finish($1,$2,$3,0)',[run.id,member,stage])).awarded,points);
+ await asUser(member);
+}
+assert.equal((await scalar('select public.kov_my_activity()')).points,310);
+await asUser(other);assert.equal((await scalar('select public.kov_my_activity()')).points,0);assert.equal(await scalar("select count(*) from public.point_events where kind='defense'"),0);
+await db.exec('reset role;set role anon');await assert.rejects(db.exec('select public.kov_defense_begin()'),/permission denied/);
+await db.close();console.log('PASS: SQL reruns, session reuse, login/ownership/RLS, service-only award, timing guard, reward boundaries, idempotence and wallet totals');

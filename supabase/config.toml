@@ -1,0 +1,3 @@
+[functions.defense-reward]
+# Handler verifies the user JWT through auth.getUser(token).
+verify_jwt = false

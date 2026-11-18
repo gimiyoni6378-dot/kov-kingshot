@@ -7,7 +7,7 @@ $('.menu-toggle').addEventListener('click',()=>$('.menu-toggle').setAttribute('a
 $('#gate-login').addEventListener('click',showAuth);
 const format = number => Number(number).toLocaleString('ko-KR');
 $('#rank-rules').textContent = `Lv.1~30은 ${format(LEVEL_STEP)}P마다, 이후 TG1~TG10은 ${format(TG_STEP)}P마다 성장해요.`;
-const kindLabels = {post:'갤러리 글 등록',comment:'댓글 등록',attendance:'출석체크',post_deleted:'글 삭제 · 포인트 회수',comment_deleted:'댓글 삭제 · 포인트 회수'};
+const kindLabels = {post:'갤러리 글 등록',comment:'댓글 등록',attendance:'출석체크',defense:'성벽 지키기 보상',post_deleted:'글 삭제 · 포인트 회수',comment_deleted:'댓글 삭제 · 포인트 회수'};
 let generation=0,historyPage=0,loadingHistory=false,ready=false;
 function errorMessage(error){return /PGRST202|PGRST205|42883|42P01/.test(error?.code||'') ? '포인트 기능을 준비하고 있어요. 설정 완료 후 다시 방문해주세요.' : friendly(error);}
 async function loadHistory(reset=false){
@@ -31,13 +31,14 @@ async function loadHistory(reset=false){
 }
 async function refresh(){
  const ticket=++generation;$('#member-content').hidden=true;$('#login-gate').hidden=Boolean(user);$('#member-status').textContent='';$('#point-history').replaceChildren();$('#history-more').hidden=true;
+ $('#point-wallet').hidden=!user;$('#wallet-points').textContent='—';$('#wallet-status').textContent='포인트를 불러오고 있어요.';
  if(!user)return;
  const member=user.id;$('#member-status').textContent='내 기록을 불러오고 있어요.';
  try{
   const {data,error}=await client.rpc('kov_my_activity');
   if(ticket!==generation || user?.id!==member)return;
   if(error)throw error;
-  const rank=rankForPoints(data.points);
+  const rank=rankForPoints(data.points);$('#wallet-points').textContent=format(data.points);$('#wallet-status').textContent='활동과 게임 보상이 합산된 포인트예요.';
   renderRankEmblem($('.castle-emblem'),rank);
   $('#my-nickname').textContent=user.user_metadata?.nickname||'KOV 멤버';$('#my-rank').textContent=rank.label;
   $('.rank-panel').classList.toggle('is-tg',rank.isTG);$('#my-points').textContent=format(data.points);
@@ -46,7 +47,7 @@ async function refresh(){
   $('#today-date').textContent=`${data.today} · 한국 시간`;$('#check-in').disabled=data.checked_in;$('#check-in').textContent=data.checked_in?'오늘 출석 완료 ✓':'오늘 출석하고 +1P';
   $('#my-posts').textContent=format(data.posts);$('#my-comments').textContent=format(data.comments);$('#my-attendance').textContent=format(data.attendance_days);
   $('#member-content').hidden=false;$('#member-status').textContent='';await loadHistory(true);
- }catch(error){if(ticket===generation)$('#member-status').textContent=errorMessage(error);}
+ }catch(error){if(ticket===generation){$('#member-status').textContent=errorMessage(error);$('#wallet-status').textContent=errorMessage(error);}}
 }
 $('#check-in').addEventListener('click',async()=>{
  if(!user)return showAuth();
