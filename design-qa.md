@@ -141,3 +141,9 @@ No new character/scene assets were changed. The revised opening and controls wer
 Moved the recruit/refund menu into the battlefield below the selected pad, with stacked buttons and explicit accessible labels. Gate HP and wave now occupy a normal-flow strip above the canvas. Live Pages review confirmed the strip bottom equals the battlefield top, and the selected-pad menu stays within the battlefield.
 
 Browser checks: archer purchase 200→160, add 160→120, refund +56→176 and menu disappears; selecting the bottom-right infantry pad relocates the menu; starting battle hides it. The engine, combat, controls and visuals suites pass. Evidence: `/workspace/shared/kov-defense-contextual-controls.jpg`. Physical-phone viewport testing remains unmeasured; coarse-pointer CSS retains 44px action targets and reduces the offset on small screens.
+
+## Member defense rewards integration
+
+GitHub Pages build for a1f7109 completed successfully. Live browser review confirms login gate, disabled anonymous recruitment/start, game-to-mypage navigation and main navigation link back to the game. The wallet card exists in the deployed mypage DOM and remains private while signed out. Screenshot: `/workspace/shared/kov-defense-member-gate.jpg`. No application console errors observed; an unrelated browser-extension metadata error was excluded.
+
+Passing: engine, combat, controls, visuals, rank tests; full deterministic replay through ten stages, each reward boundary, illegal command/forged score rejection; PGLite migration rerun, account isolation/RLS, service-only award, timing guard, final-balance totals and duplicate settlement tests. Edge TypeScript syntax checks passed. Live authenticated reward/wallet verification is pending the owner's SQL and Edge Function deployment; it has not been claimed as tested. Physical phone viewport testing remains unmeasured.
