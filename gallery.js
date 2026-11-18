@@ -1,105 +1,19 @@
+import {client, user, authReady, showAuth, friendly} from './auth.js?v=1';
 const $ = (selector) => document.querySelector(selector);
 const menu = $('.main-nav');
 $('.menu-toggle').addEventListener('click', () => {
   const open = menu.classList.toggle('open');
   $('.menu-toggle').setAttribute('aria-expanded', String(open));
 });
-document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
-const config = window.KOV_GALLERY_CONFIG || {};
-let client, user, signup = false, page = 0, selectedPost, previewUrl;
+const status = (selector,message) => { $(selector).textContent = message; };
+let page = 0, selectedPost, previewUrl;
 const pageSize = 12;
-const redirectTo = new URL('./gallery.html', location.href).href;
-const status = (selector, message) => { $(selector).textContent = message; };
-function friendly(error) {
-  const message = error?.message || '';
-  if (/invalid login credentials/i.test(message)) return '이메일이나 비밀번호를 확인해주세요.';
-  if (/email not confirmed/i.test(message)) return '이메일에 도착한 확인 링크를 먼저 눌러주세요.';
-  if (/rate limit|too many/i.test(message)) return '요청이 많아요. 잠시 후 다시 시도해주세요.';
-  if (/already registered/i.test(message)) return '이미 가입한 이메일이에요. 로그인해주세요.';
-  if (/relation|schema cache|row.level|permission denied|bucket not found/i.test(message)) return '갤러리 저장소 설정 중이에요. 잠시 후 다시 이용해주세요.';
-  if (/fetch|network/i.test(message)) return '연결을 확인하고 다시 시도해주세요.';
-  return '처리하지 못했어요. 잠시 후 다시 시도해주세요.';
-}
-function setMember(session) {
-  user = session?.user || null;
-  $('#member-name').textContent = user ? (user.user_metadata?.nickname || 'KOV 멤버') : '';
-  $('#auth-button').hidden = Boolean(user);
-  $('#logout-button').hidden = !user;
-  if (selectedPost) $('#delete-button').hidden = selectedPost.author_id !== user?.id;
-}
-function requireClient() {
-  if (client) return true;
-  status('#status', '갤러리 연결을 준비하고 있어요. 잠시 후 다시 방문해주세요.');
-  return false;
-}
-function showAuth() {
-  if (!requireClient()) return;
-  status('#auth-status', '');
-  $('#auth-dialog').showModal();
-}
-$('#auth-button').addEventListener('click', showAuth);
 $('#write-button').addEventListener('click', () => {
-  if (!requireClient()) return;
-  if (!user) return showAuth();
-  status('#write-status', '');
-  $('#write-dialog').showModal();
+  if (!client || !user) return showAuth();
+  status('#write-status',''); $('#write-dialog').showModal();
 });
-$('#auth-switch').addEventListener('click', () => {
-  signup = !signup;
-  $('#nickname-label').hidden = !signup;
-  $('#nickname').required = signup;
-  $('#auth-title').textContent = signup ? 'KOV에 오신 걸 환영해요.' : '다시 만나요.';
-  $('#auth-description').textContent = signup ? '게임 닉네임으로 함께 기록해요.' : '로그인하고 KOV의 순간을 나눠보세요.';
-  $('#auth-submit').textContent = signup ? '회원가입' : '로그인';
-  $('#auth-switch').textContent = signup ? '이미 계정이 있나요? 로그인' : '처음 오셨나요? 회원가입';
-  $('#password').autocomplete = signup ? 'new-password' : 'current-password';
-  $('#reset-password').hidden = signup;
-  status('#auth-status', '');
-});
-$('#auth-form').addEventListener('submit', async event => {
-  event.preventDefault();
-  $('#auth-submit').disabled = true;
-  status('#auth-status', '처리 중이에요…');
-  try {
-    const credentials = {email: $('#email').value.trim(), password: $('#password').value};
-    let result;
-    if (signup) {
-      const nickname = $('#nickname').value.trim();
-      if (!nickname) throw new Error('nickname');
-      result = await client.auth.signUp({...credentials, options: {emailRedirectTo: redirectTo, data: {nickname}}});
-    } else result = await client.auth.signInWithPassword(credentials);
-    if (result.error) throw result.error;
-    $('#password').value = '';
-    if (result.data.session) { setMember(result.data.session); $('#auth-dialog').close(); }
-    else status('#auth-status', '확인 메일을 보냈어요. 이메일의 링크를 누르면 가입이 완료돼요.');
-  } catch(error) { status('#auth-status', error.message === 'nickname' ? '게임 닉네임을 입력해주세요.' : friendly(error)); }
-  finally { $('#auth-submit').disabled = false; }
-});
-$('#logout-button').addEventListener('click', async () => {
-  const {error} = await client.auth.signOut();
-  if (error) status('#status', friendly(error));
-  else { setMember(null); $('#write-dialog').close(); }
-});
-$('#reset-password').addEventListener('click', async () => {
-  if (!$('#email').reportValidity()) return;
-  $('#reset-password').disabled = true;
-  try {
-    const {error} = await client.auth.resetPasswordForEmail($('#email').value.trim(), {redirectTo});
-    if (error) throw error;
-    status('#auth-status', '이메일로 비밀번호 재설정 링크를 보냈어요.');
-  } catch(error) { status('#auth-status', friendly(error)); }
-  finally { $('#reset-password').disabled = false; }
-});
-$('#reset-form').addEventListener('submit', async event => {
-  event.preventDefault();
-  const button = $('#reset-form button[type=submit]'); button.disabled = true;
-  try {
-    const {error} = await client.auth.updateUser({password: $('#new-password').value});
-    if (error) throw error;
-    $('#new-password').value = '';
-    status('#reset-status', '변경했어요. 새 비밀번호로 로그인할 수 있어요.');
-  } catch(error) { status('#reset-status', friendly(error)); }
-  finally { button.disabled = false; }
+document.addEventListener('kov:session', () => {
+  if (selectedPost) $('#delete-button').hidden = selectedPost.author_id !== user?.id;
 });
 function imageUrl(path) { return client.storage.from('gallery').getPublicUrl(path).data.publicUrl; }
 function renderPost(post) {
@@ -182,19 +96,6 @@ $('#delete-button').addEventListener('click', async () => {
   } catch(error) { status('#detail-status',friendly(error)); }
   finally { $('#delete-button').disabled = false; }
 });
-async function init() {
-  if (!config.url || !config.publicKey) return requireClient();
-  try {
-    const {createClient} = await import('https://esm.sh/@supabase/supabase-js@2.49.8');
-    client = createClient(config.url,config.publicKey);
-    client.auth.onAuthStateChange((event,session) => {
-      setMember(session);
-      if (event === 'PASSWORD_RECOVERY') $('#reset-dialog').showModal();
-    });
-    const {data,error} = await client.auth.getSession();
-    if (error) throw error;
-    setMember(data.session);
-    await loadPosts(true);
-  } catch(error) { status('#status','갤러리에 연결하지 못했어요. 연결을 확인하고 새로고침해주세요.'); }
-}
-init();
+
+if (await authReady) await loadPosts(true);
+else status('#status','갤러리에 연결하지 못했어요. 새로고침 후 다시 시도해주세요.');
