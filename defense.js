@@ -66,7 +66,7 @@ function draw(){
    const side=(j-(units.length-1)/2),spread=Math.min(39,118/Math.max(1,units.length-1));
    const y=SLOTS[index].y*H+(j%2?10:0);const x=SLOTS[index].x*W+side*spread;
    const offset=!reduced&&game.phase==='battle'&&!paused?Math.sin(time*5+j)*2:0;
-   actors.push({y,draw:()=>sprite(images.troops,troopRects[slot.type][tier],x,y+offset,(slot.type==='cavalry'?155:142)+tier*12)});
+   actors.push({y,draw:()=>sprite(images.troops,troopRects[slot.type][tier],x,y+offset,(slot.type==='cavalry'?207:186)+tier*15)});
   });
  });
  for(const enemy of game.enemies){
