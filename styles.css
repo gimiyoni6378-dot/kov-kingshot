@@ -47,3 +47,4 @@ body{font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optim
 @media(max-width:620px){.hero h1{font-size:35px;line-height:1.45}.hero-copy>p,.story-text,.community-copy>p,.cta-inner>p{font-size:12px}.strength-heading h2{font-size:28px}.story h2,.community h2{font-size:29px}.game-button{font-size:11px}}
 .game-button .button-label{display:inline-block;white-space:nowrap;word-break:keep-all;flex:0 0 auto}
 .game-button .ui-icon{fill:none;stroke:currentColor;flex:0 0 18px}
+.gallery-invite{display:flex;justify-content:space-between;align-items:center;gap:24px;padding-top:55px;padding-bottom:55px;border-bottom:1px solid #dfd0a8}.gallery-invite h2{font-size:29px;letter-spacing:-.04em;margin:10px 0}.gallery-invite p{font-size:13px;color:#74775f}@media(max-width:620px){.gallery-invite{align-items:flex-start;flex-direction:column}.gallery-invite h2{font-size:26px}}
