@@ -1,3 +1,4 @@
+import {renderRankEmblem} from './tg-badge.js?v=1';
 import {client,user,authReady,showAuth,friendly} from './auth.js?v=2';
 import {rankForPoints,LEVEL_STEP,TG_STEP} from './ranks.js?v=1';
 const $ = selector => document.querySelector(selector);
@@ -37,6 +38,7 @@ async function refresh(){
   if(ticket!==generation || user?.id!==member)return;
   if(error)throw error;
   const rank=rankForPoints(data.points);
+  renderRankEmblem($('.castle-emblem'),rank);
   $('#my-nickname').textContent=user.user_metadata?.nickname||'KOV 멤버';$('#my-rank').textContent=rank.label;
   $('.rank-panel').classList.toggle('is-tg',rank.isTG);$('#my-points').textContent=format(data.points);
   $('#rank-target').textContent=rank.nextLabel?`다음 등급 ${rank.nextLabel}`:'최고 등급 달성';$('#rank-percent').textContent=`${rank.progress}%`;
