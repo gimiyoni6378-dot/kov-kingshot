@@ -31,7 +31,9 @@ $('#result-action').addEventListener('click',()=>{
  if(game.phase==='cleared'){game.next();}else game.reset();
  reportedPhase='';selectedSlot=null;paused=false;$('#result').hidden=true;tell(`${game.wave}웨이브 준비 · 생존 병사는 HP를 20% 회복했어요.`);updateUI();
 });
+let renderedStatsType=null;
 function updateUnitStats(){
+ if(renderedStatsType===selected)return;renderedStatsType=selected;
  const spec=TROOPS[selected];$('#unit-role').textContent=`${spec.name} · ${spec.role}`;$('#unit-ability').textContent=spec.description;
  $('#unit-summary').textContent=`1단계 HP ${spec.hp} · 공격 ${spec.damage} · ${spec.interval}초마다`;
  $('#unit-stat-table').replaceChildren();
@@ -111,6 +113,7 @@ function draw(){
    // Fixed per-row scale and foot anchors prevent frame-to-frame size changes.
    ctx.drawImage(images.run,...frame.rect,enemy.x*W-frame.foot[0]*scale,enemy.y*H-frame.foot[1]*scale-bob,frame.rect[2]*scale,frame.rect[3]*scale);
    if(enemy.hp<enemy.maxHp||boss)hpBar(enemy.x*W,enemy.y*H-baseHeight*perspective-12,boss?115:54,enemy.hp/enemy.maxHp,boss?'#b9432e':'#d98343');
+   if(enemy.shielded){ctx.font='700 20px "Noto Sans KR",sans-serif';ctx.textAlign='center';ctx.fillStyle='#493f33d9';ctx.fillRect(enemy.x*W-31,enemy.y*H-baseHeight*perspective-43,62,24);ctx.fillStyle=enemy.brokenUntil>game.clock?'#fbd881':'#dbecf3';ctx.fillText(enemy.brokenUntil>game.clock?'약화':'철갑',enemy.x*W,enemy.y*H-baseHeight*perspective-24);}
   }});
   if(enemy.moving&&!reduced&&runFrame(enemy.distance)===1)fxImage('dust',enemy.x*W,enemy.y*H+3,37,0,.22);
  }
