@@ -61,7 +61,7 @@ function updateUI(){
  for(const [index,button] of slotButtons.entries()){
   const slot=game.slots[index];button.disabled=game.phase!=='prep';button.classList.toggle('occupied',Boolean(slot));button.classList.toggle('compatible',game.phase==='prep'&&(SLOTS[index].wall===(selected==='archer'))&&(!slot||slot.type===selected));button.classList.toggle('selected-slot',selectedSlot===index);
   button.querySelector('.slot-plus').hidden=Boolean(slot);button.querySelector('.slot-tag').hidden=!slot;
-  if(slot){button.querySelector('.slot-tag').textContent=`${TROOPS[slot.type].name} ${highestTier(slot)}단계 · ${unitCount(slot)}명`;button.setAttribute('aria-label',`${index+1}번 ${TROOPS[slot.type].name} 부대: 1단계 ${slot.counts[0]}명, 2단계 ${slot.counts[1]}명, 3단계 ${slot.counts[2]}명. 같은 병사 1명 추가`);}
+  if(slot){button.querySelector('.slot-tag').textContent=`${TROOPS[slot.type].name} ${highestTier(slot)}단계 · ${unitCount(slot)}명`;button.setAttribute('aria-label',`${index+1}번 ${TROOPS[slot.type].name} 부대: 1단계 ${slot.counts[0]}명, 2단계 ${slot.counts[1]}명, 3단계 ${slot.counts[2]}명. 부대 선택 · 추가 모집 및 회수`);}
   else button.setAttribute('aria-label',`${index+1}번 ${SLOTS[index].wall?'성벽 궁병':'성문 앞 보병·기병'} 빈자리 배치`);
  }
  const selectedArmy=selectedSlot!==null?game.slots[selectedSlot]:null;
