@@ -3,7 +3,7 @@ const weightsList=[[1,0,0],[0,1,0],[0,0,1],[.8,.1,.1],[.1,.8,.1],[.1,.1,.8],[.5,
 const budgetFractions=[.55,.8,1];const methods=['spread','focus','random'];
 function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let n=Math.imul(seed^seed>>>15,1|seed);n^=n+Math.imul(n^n>>>7,61|n);return((n^n>>>14)>>>0)/4294967296;};}
 export function simulate(weights,budgetFraction,method,seed=1,balance={},GameClass=DefenseGame){
- const game=new GameClass(balance),random=rng(seed);let recruits=0;
+ const game=new GameClass(balance),random=rng(seed);let recruits=0;const startingGold=game.gold,startingUnits=game.slots.reduce((n,slot)=>n+(slot?.members?.length||0),0);
  for(let wave=1;wave<=10;wave++){
   const budget=game.gold*budgetFraction;let spent=0;
   for(let step=0;step<200;step++){
@@ -19,17 +19,18 @@ export function simulate(weights,budgetFraction,method,seed=1,balance={},GameCla
    for(const index of slots){const result=game.recruit(index,type);if(result.ok){success=true;spent+=TROOPS[type].cost;recruits++;break;}}
    if(!success)break;
   }
-  game.start();let ticks=0;
+  if(!game.start())return {reached:wave,won:false,health:Math.round(game.health),deaths:game.deaths,recruits,startingGold,startingUnits};let ticks=0;
   while(game.phase==='battle'&&ticks++<18000)game.step(1/60);
-  if(game.phase==='lost'||game.phase==='battle')return{reached:wave,won:false,health:Math.round(game.health),deaths:game.deaths,recruits};
-  if(game.phase==='won')return{reached:10,won:true,health:Math.round(game.health),deaths:game.deaths,recruits};
+  if(game.phase==='lost'||game.phase==='battle')return{reached:wave,won:false,health:Math.round(game.health),deaths:game.deaths,recruits,startingGold,startingUnits};
+  if(game.phase==='won')return{reached:10,won:true,health:Math.round(game.health),deaths:game.deaths,recruits,startingGold,startingUnits};
   game.next();
  }
 }
 export function runBatch(balance={},GameClass=DefenseGame){
  const results=[];let id=0;
  for(const weights of weightsList)for(const budget of budgetFractions)for(const method of methods)results.push({weights,budget,method,...simulate(weights,budget,method,++id,balance,GameClass)});
- return {version:2,note:'Deterministic scripted recruitment strategies, not a human win probability.',balance,cases:results.length,reached10:results.filter(r=>r.reached===10).length,cleared10:results.filter(r=>r.won).length,results};
+ const initialGame=new GameClass(balance);const startingConditions={gold:initialGame.gold,units:initialGame.slots.reduce((n,slot)=>n+(slot?.members?.length||0),0)};
+ return {version:3,startingConditions,note:'Deterministic scripted recruitment strategies, not a human win probability.',balance:initialGame.balance||balance,simulationTick:1/60,refundUsed:false,cases:results.length,reached10:results.filter(r=>r.reached===10).length,cleared10:results.filter(r=>r.won).length,results};
 }
 if(process.argv[1]?.endsWith('simulate-defense.mjs')){
  const batch=runBatch();

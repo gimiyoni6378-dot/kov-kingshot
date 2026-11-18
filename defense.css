@@ -6,3 +6,5 @@
 .selection-info{flex-wrap:wrap}
 
 .slot .slot-plus{font-size:28px;color:#91e2fb;text-shadow:0 1px 2px #488ba6}
+
+.army-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:10px 0 4px}.army-actions button{min-height:44px;padding:9px 13px;border:1px solid #ae874a;border-radius:8px;background:#fff0c6;color:#79522c;font-size:12px;font-weight:800;box-shadow:0 2px #c3a16b}.army-actions #add-unit{background:#6f8b3c;color:#fff4d6;border-color:#546e2d}.army-actions button:disabled{opacity:.5}.army-actions #sell{background:#f0d8af;color:#895436}.selection-info{margin-top:7px;text-align:center}.start-button:disabled{font-size:18px;letter-spacing:0}@media(max-width:450px){.army-actions button{font-size:11px;min-height:44px}.start-button:disabled{font-size:17px}}

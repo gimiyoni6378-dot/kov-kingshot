@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {DefenseGame} from '../defense-engine.js';
+import {choosePad} from '../defense-controls.js';
+const g=new DefenseGame();
+assert.equal(choosePad(g,0,'archer').action,'recruit');assert.equal(g.gold,160);assert.equal(g.slots[0].members.length,1);
+const selected=choosePad(g,0,'cavalry');assert.equal(selected.action,'select');assert.equal(selected.type,'archer');assert.equal(g.gold,160);assert.equal(g.slots[0].members.length,1,'Selecting never buys a member');
+g.recruit(0,'archer');assert.equal(g.gold,120);assert.equal(g.refundValue(0),56);const sold=g.sell(0);assert.equal(sold.refund,56);assert.equal(g.gold,176);assert.equal(g.slots[0],null);
+assert.equal(g.sell(0).ok,false);assert.equal(g.gold,176);
+for(let i=0;i<5;i++)assert.equal(g.recruit(3,'infantry').ok,true);assert.deepEqual(g.slots[3].counts,[0,1,0]);assert.equal(g.refundValue(3),105,'Merged members refund based on original paid cost');g.sell(3);assert.equal(g.gold,131);
+g.recruit(5,'cavalry');assert.equal(g.refundValue(5),42);g.damageSquad(5,1e6);assert.equal(g.refundValue(5),0);assert.equal(g.sell(5).ok,false);
+console.log('PASS: empty-pad recruit, free occupied-pad selection, explicit additions, exact 70% refunds, merged costs, dead squads and no duplicate refund');

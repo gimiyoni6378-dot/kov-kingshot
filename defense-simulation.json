@@ -1,9 +1,21 @@
 {
-  "version": 2,
+  "version": 3,
+  "startingConditions": {
+    "gold": 200,
+    "units": 0
+  },
   "note": "Deterministic scripted recruitment strategies, not a human win probability.",
-  "balance": {},
+  "balance": {
+    "rewardFactor": 1.02,
+    "hpScale": 1,
+    "lateGrowth": 0.14,
+    "captainHp": 6000,
+    "warlordHp": 15000
+  },
+  "simulationTick": 0.016666666666666666,
+  "refundUsed": false,
   "cases": 108,
-  "reached10": 51,
+  "reached10": 30,
   "cleared10": 17,
   "results": [
     {
@@ -14,11 +26,13 @@
       ],
       "budget": 0.55,
       "method": "spread",
-      "reached": 10,
+      "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 19,
-      "recruits": 50
+      "deaths": 5,
+      "recruits": 17,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -28,11 +42,13 @@
       ],
       "budget": 0.55,
       "method": "focus",
-      "reached": 10,
+      "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 7,
-      "recruits": 50
+      "deaths": 5,
+      "recruits": 17,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -42,11 +58,13 @@
       ],
       "budget": 0.55,
       "method": "random",
-      "reached": 10,
+      "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 19,
-      "recruits": 50
+      "deaths": 5,
+      "recruits": 17,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -56,11 +74,13 @@
       ],
       "budget": 0.8,
       "method": "spread",
-      "reached": 10,
+      "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 23,
-      "recruits": 54
+      "deaths": 8,
+      "recruits": 20,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -70,81 +90,93 @@
       ],
       "budget": 0.8,
       "method": "focus",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 7,
-      "recruits": 54
-    },
-    {
-      "weights": [
-        1,
-        0,
-        0
-      ],
-      "budget": 0.8,
-      "method": "random",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 19,
-      "recruits": 54
-    },
-    {
-      "weights": [
-        1,
-        0,
-        0
-      ],
-      "budget": 1,
-      "method": "spread",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 21,
-      "recruits": 56
-    },
-    {
-      "weights": [
-        1,
-        0,
-        0
-      ],
-      "budget": 1,
-      "method": "focus",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 9,
-      "recruits": 56
-    },
-    {
-      "weights": [
-        1,
-        0,
-        0
-      ],
-      "budget": 1,
-      "method": "random",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 17,
-      "recruits": 56
-    },
-    {
-      "weights": [
-        0,
-        1,
-        0
-      ],
-      "budget": 0.55,
-      "method": "spread",
       "reached": 5,
       "won": false,
       "health": 0,
       "deaths": 4,
-      "recruits": 21
+      "recruits": 20,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        1,
+        0,
+        0
+      ],
+      "budget": 0.8,
+      "method": "random",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 8,
+      "recruits": 20,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        1,
+        0,
+        0
+      ],
+      "budget": 1,
+      "method": "spread",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 9,
+      "recruits": 21,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        1,
+        0,
+        0
+      ],
+      "budget": 1,
+      "method": "focus",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 5,
+      "recruits": 21,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        1,
+        0,
+        0
+      ],
+      "budget": 1,
+      "method": "random",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 9,
+      "recruits": 21,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0,
+        1,
+        0
+      ],
+      "budget": 0.55,
+      "method": "spread",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 3,
+      "recruits": 22,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -154,11 +186,13 @@
       ],
       "budget": 0.55,
       "method": "focus",
-      "reached": 4,
+      "reached": 1,
       "won": false,
       "health": 0,
-      "deaths": 1,
-      "recruits": 16
+      "deaths": 0,
+      "recruits": 3,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -168,11 +202,13 @@
       ],
       "budget": 0.55,
       "method": "random",
-      "reached": 5,
+      "reached": 1,
       "won": false,
       "health": 0,
-      "deaths": 2,
-      "recruits": 21
+      "deaths": 0,
+      "recruits": 3,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -186,7 +222,9 @@
       "won": false,
       "health": 0,
       "deaths": 5,
-      "recruits": 25
+      "recruits": 26,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -196,11 +234,13 @@
       ],
       "budget": 0.8,
       "method": "focus",
-      "reached": 4,
+      "reached": 1,
       "won": false,
       "health": 0,
-      "deaths": 1,
-      "recruits": 19
+      "deaths": 0,
+      "recruits": 5,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -210,11 +250,13 @@
       ],
       "budget": 0.8,
       "method": "random",
-      "reached": 5,
+      "reached": 1,
       "won": false,
       "health": 0,
-      "deaths": 2,
-      "recruits": 25
+      "deaths": 0,
+      "recruits": 5,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -224,221 +266,253 @@
       ],
       "budget": 1,
       "method": "spread",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 13,
-      "recruits": 75
-    },
-    {
-      "weights": [
-        0,
-        1,
-        0
-      ],
-      "budget": 1,
-      "method": "focus",
-      "reached": 4,
-      "won": false,
-      "health": 0,
-      "deaths": 1,
-      "recruits": 20
-    },
-    {
-      "weights": [
-        0,
-        1,
-        0
-      ],
-      "budget": 1,
-      "method": "random",
       "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 3,
-      "recruits": 26
-    },
-    {
-      "weights": [
-        0,
-        0,
-        1
-      ],
-      "budget": 0.55,
-      "method": "spread",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 3,
-      "recruits": 10
-    },
-    {
-      "weights": [
-        0,
-        0,
-        1
-      ],
-      "budget": 0.55,
-      "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 3,
-      "recruits": 10
-    },
-    {
-      "weights": [
-        0,
-        0,
-        1
-      ],
-      "budget": 0.55,
-      "method": "random",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 3,
-      "recruits": 10
-    },
-    {
-      "weights": [
-        0,
-        0,
-        1
-      ],
-      "budget": 0.8,
-      "method": "spread",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 3,
-      "recruits": 12
-    },
-    {
-      "weights": [
-        0,
-        0,
-        1
-      ],
-      "budget": 0.8,
-      "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 3,
-      "recruits": 12
-    },
-    {
-      "weights": [
-        0,
-        0,
-        1
-      ],
-      "budget": 0.8,
-      "method": "random",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 3,
-      "recruits": 12
-    },
-    {
-      "weights": [
-        0,
-        0,
-        1
-      ],
-      "budget": 1,
-      "method": "spread",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 3,
-      "recruits": 13
-    },
-    {
-      "weights": [
-        0,
-        0,
-        1
-      ],
-      "budget": 1,
-      "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 3,
-      "recruits": 13
-    },
-    {
-      "weights": [
-        0,
-        0,
-        1
-      ],
-      "budget": 1,
-      "method": "random",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 3,
-      "recruits": 13
-    },
-    {
-      "weights": [
-        0.8,
-        0.1,
-        0.1
-      ],
-      "budget": 0.55,
-      "method": "spread",
-      "reached": 10,
-      "won": true,
-      "health": 22,
-      "deaths": 7,
-      "recruits": 52
-    },
-    {
-      "weights": [
-        0.8,
-        0.1,
-        0.1
-      ],
-      "budget": 0.55,
-      "method": "focus",
-      "reached": 10,
-      "won": true,
-      "health": 67,
-      "deaths": 7,
-      "recruits": 50
-    },
-    {
-      "weights": [
-        0.8,
-        0.1,
-        0.1
-      ],
-      "budget": 0.55,
-      "method": "random",
-      "reached": 10,
-      "won": true,
-      "health": 29,
-      "deaths": 16,
-      "recruits": 46
-    },
-    {
-      "weights": [
-        0.8,
-        0.1,
-        0.1
-      ],
-      "budget": 0.8,
-      "method": "spread",
-      "reached": 10,
-      "won": true,
-      "health": 45,
       "deaths": 5,
-      "recruits": 52
+      "recruits": 28,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0,
+        1,
+        0
+      ],
+      "budget": 1,
+      "method": "focus",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 6,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0,
+        1,
+        0
+      ],
+      "budget": 1,
+      "method": "random",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 3,
+      "recruits": 28,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0,
+        0,
+        1
+      ],
+      "budget": 0.55,
+      "method": "spread",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 1,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0,
+        0,
+        1
+      ],
+      "budget": 0.55,
+      "method": "focus",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 1,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0,
+        0,
+        1
+      ],
+      "budget": 0.55,
+      "method": "random",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 1,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0,
+        0,
+        1
+      ],
+      "budget": 0.8,
+      "method": "spread",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 2,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0,
+        0,
+        1
+      ],
+      "budget": 0.8,
+      "method": "focus",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 2,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0,
+        0,
+        1
+      ],
+      "budget": 0.8,
+      "method": "random",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 2,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0,
+        0,
+        1
+      ],
+      "budget": 1,
+      "method": "spread",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 3,
+      "recruits": 14,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0,
+        0,
+        1
+      ],
+      "budget": 1,
+      "method": "focus",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 3,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0,
+        0,
+        1
+      ],
+      "budget": 1,
+      "method": "random",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 3,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "budget": 0.55,
+      "method": "spread",
+      "reached": 10,
+      "won": false,
+      "health": 0,
+      "deaths": 29,
+      "recruits": 57,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "budget": 0.55,
+      "method": "focus",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 9,
+      "recruits": 17,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "budget": 0.55,
+      "method": "random",
+      "reached": 10,
+      "won": true,
+      "health": 3,
+      "deaths": 6,
+      "recruits": 56,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "budget": 0.8,
+      "method": "spread",
+      "reached": 10,
+      "won": true,
+      "health": 24,
+      "deaths": 12,
+      "recruits": 52,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -448,11 +522,13 @@
       ],
       "budget": 0.8,
       "method": "focus",
-      "reached": 10,
-      "won": true,
-      "health": 86,
-      "deaths": 2,
-      "recruits": 54
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 8,
+      "recruits": 20,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -464,9 +540,11 @@
       "method": "random",
       "reached": 10,
       "won": true,
-      "health": 81,
-      "deaths": 5,
-      "recruits": 54
+      "health": 60,
+      "deaths": 12,
+      "recruits": 62,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -478,9 +556,11 @@
       "method": "spread",
       "reached": 10,
       "won": true,
-      "health": 100,
-      "deaths": 7,
-      "recruits": 56
+      "health": 74,
+      "deaths": 14,
+      "recruits": 61,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -493,70 +573,224 @@
       "reached": 10,
       "won": true,
       "health": 93,
+      "deaths": 4,
+      "recruits": 63,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "budget": 1,
+      "method": "random",
+      "reached": 10,
+      "won": false,
+      "health": 0,
+      "deaths": 20,
+      "recruits": 48,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.1,
+        0.8,
+        0.1
+      ],
+      "budget": 0.55,
+      "method": "spread",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 2,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.1,
+        0.8,
+        0.1
+      ],
+      "budget": 0.55,
+      "method": "focus",
+      "reached": 2,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 7,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.1,
+        0.8,
+        0.1
+      ],
+      "budget": 0.55,
+      "method": "random",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 4,
+      "recruits": 20,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.1,
+        0.8,
+        0.1
+      ],
+      "budget": 0.8,
+      "method": "spread",
+      "reached": 5,
+      "won": false,
+      "health": 0,
       "deaths": 3,
-      "recruits": 55
+      "recruits": 25,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
-        0.8,
         0.1,
+        0.8,
+        0.1
+      ],
+      "budget": 0.8,
+      "method": "focus",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 5,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.1,
+        0.8,
+        0.1
+      ],
+      "budget": 0.8,
+      "method": "random",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 3,
+      "recruits": 19,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.1,
+        0.8,
+        0.1
+      ],
+      "budget": 1,
+      "method": "spread",
+      "reached": 10,
+      "won": false,
+      "health": 0,
+      "deaths": 19,
+      "recruits": 53,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.1,
+        0.8,
+        0.1
+      ],
+      "budget": 1,
+      "method": "focus",
+      "reached": 2,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 10,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.1,
+        0.8,
         0.1
       ],
       "budget": 1,
       "method": "random",
-      "reached": 10,
-      "won": true,
-      "health": 62,
-      "deaths": 13,
-      "recruits": 56
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 1,
+      "recruits": 27,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
         0.1,
-        0.8,
-        0.1
+        0.1,
+        0.8
       ],
       "budget": 0.55,
       "method": "spread",
       "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 1,
-      "recruits": 14
+      "deaths": 10,
+      "recruits": 11,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
         0.1,
-        0.8,
-        0.1
+        0.1,
+        0.8
       ],
       "budget": 0.55,
       "method": "focus",
-      "reached": 5,
+      "reached": 2,
       "won": false,
       "health": 0,
-      "deaths": 1,
-      "recruits": 19
+      "deaths": 0,
+      "recruits": 4,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
         0.1,
-        0.8,
-        0.1
+        0.1,
+        0.8
       ],
       "budget": 0.55,
       "method": "random",
-      "reached": 9,
+      "reached": 1,
       "won": false,
       "health": 0,
-      "deaths": 7,
-      "recruits": 37
+      "deaths": 0,
+      "recruits": 2,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
         0.1,
-        0.8,
-        0.1
+        0.1,
+        0.8
       ],
       "budget": 0.8,
       "method": "spread",
@@ -564,189 +798,73 @@
       "won": false,
       "health": 0,
       "deaths": 2,
-      "recruits": 18
+      "recruits": 16,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
         0.1,
-        0.8,
-        0.1
+        0.1,
+        0.8
       ],
       "budget": 0.8,
       "method": "focus",
-      "reached": 5,
+      "reached": 1,
       "won": false,
       "health": 0,
-      "deaths": 1,
-      "recruits": 23
+      "deaths": 0,
+      "recruits": 3,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
         0.1,
-        0.8,
-        0.1
+        0.1,
+        0.8
       ],
       "budget": 0.8,
       "method": "random",
-      "reached": 5,
+      "reached": 7,
       "won": false,
       "health": 0,
-      "deaths": 4,
-      "recruits": 19
+      "deaths": 5,
+      "recruits": 28,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
         0.1,
-        0.8,
-        0.1
+        0.1,
+        0.8
       ],
       "budget": 1,
       "method": "spread",
-      "reached": 10,
+      "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 9,
-      "recruits": 64
+      "deaths": 3,
+      "recruits": 16,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
         0.1,
-        0.8,
-        0.1
+        0.1,
+        0.8
       ],
       "budget": 1,
       "method": "focus",
       "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 1,
-      "recruits": 23
-    },
-    {
-      "weights": [
-        0.1,
-        0.8,
-        0.1
-      ],
-      "budget": 1,
-      "method": "random",
-      "reached": 10,
       "won": false,
       "health": 0,
       "deaths": 2,
-      "recruits": 70
-    },
-    {
-      "weights": [
-        0.1,
-        0.1,
-        0.8
-      ],
-      "budget": 0.55,
-      "method": "spread",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 6,
-      "recruits": 13
-    },
-    {
-      "weights": [
-        0.1,
-        0.1,
-        0.8
-      ],
-      "budget": 0.55,
-      "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 4,
-      "recruits": 13
-    },
-    {
-      "weights": [
-        0.1,
-        0.1,
-        0.8
-      ],
-      "budget": 0.55,
-      "method": "random",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 4,
-      "recruits": 12
-    },
-    {
-      "weights": [
-        0.1,
-        0.1,
-        0.8
-      ],
-      "budget": 0.8,
-      "method": "spread",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 6,
-      "recruits": 15
-    },
-    {
-      "weights": [
-        0.1,
-        0.1,
-        0.8
-      ],
-      "budget": 0.8,
-      "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 1,
-      "recruits": 16
-    },
-    {
-      "weights": [
-        0.1,
-        0.1,
-        0.8
-      ],
-      "budget": 0.8,
-      "method": "random",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 5,
-      "recruits": 2
-    },
-    {
-      "weights": [
-        0.1,
-        0.1,
-        0.8
-      ],
-      "budget": 1,
-      "method": "spread",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 5,
-      "recruits": 15
-    },
-    {
-      "weights": [
-        0.1,
-        0.1,
-        0.8
-      ],
-      "budget": 1,
-      "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 4,
-      "recruits": 15
+      "recruits": 16,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -756,11 +874,13 @@
       ],
       "budget": 1,
       "method": "random",
-      "reached": 5,
+      "reached": 1,
       "won": false,
       "health": 0,
-      "deaths": 5,
-      "recruits": 15
+      "deaths": 0,
+      "recruits": 3,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -771,10 +891,12 @@
       "budget": 0.55,
       "method": "spread",
       "reached": 10,
-      "won": true,
-      "health": 5,
-      "deaths": 9,
-      "recruits": 47
+      "won": false,
+      "health": 0,
+      "deaths": 6,
+      "recruits": 47,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -785,10 +907,12 @@
       "budget": 0.55,
       "method": "focus",
       "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 2,
-      "recruits": 52
+      "won": true,
+      "health": 27,
+      "deaths": 4,
+      "recruits": 59,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -802,7 +926,9 @@
       "won": false,
       "health": 0,
       "deaths": 7,
-      "recruits": 53
+      "recruits": 61,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -814,261 +940,299 @@
       "method": "spread",
       "reached": 10,
       "won": true,
-      "health": 50,
-      "deaths": 8,
-      "recruits": 54
-    },
-    {
-      "weights": [
-        0.5,
-        0.4,
-        0.1
-      ],
-      "budget": 0.8,
-      "method": "focus",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 1,
-      "recruits": 60
-    },
-    {
-      "weights": [
-        0.5,
-        0.4,
-        0.1
-      ],
-      "budget": 0.8,
-      "method": "random",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 6,
-      "recruits": 43
-    },
-    {
-      "weights": [
-        0.5,
-        0.4,
-        0.1
-      ],
-      "budget": 1,
-      "method": "spread",
-      "reached": 10,
-      "won": true,
-      "health": 21,
-      "deaths": 9,
-      "recruits": 53
-    },
-    {
-      "weights": [
-        0.5,
-        0.4,
-        0.1
-      ],
-      "budget": 1,
-      "method": "focus",
-      "reached": 10,
-      "won": true,
-      "health": 43,
-      "deaths": 2,
-      "recruits": 59
-    },
-    {
-      "weights": [
-        0.5,
-        0.4,
-        0.1
-      ],
-      "budget": 1,
-      "method": "random",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 2,
-      "recruits": 11
-    },
-    {
-      "weights": [
-        0.5,
-        0.1,
-        0.4
-      ],
-      "budget": 0.55,
-      "method": "spread",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 4,
-      "recruits": 13
-    },
-    {
-      "weights": [
-        0.5,
-        0.1,
-        0.4
-      ],
-      "budget": 0.55,
-      "method": "focus",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 2,
-      "recruits": 46
-    },
-    {
-      "weights": [
-        0.5,
-        0.1,
-        0.4
-      ],
-      "budget": 0.55,
-      "method": "random",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 5,
-      "recruits": 48
-    },
-    {
-      "weights": [
-        0.5,
-        0.1,
-        0.4
-      ],
-      "budget": 0.8,
-      "method": "spread",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 11,
-      "recruits": 48
-    },
-    {
-      "weights": [
-        0.5,
-        0.1,
-        0.4
-      ],
-      "budget": 0.8,
-      "method": "focus",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 4,
-      "recruits": 47
-    },
-    {
-      "weights": [
-        0.5,
-        0.1,
-        0.4
-      ],
-      "budget": 0.8,
-      "method": "random",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 5,
-      "recruits": 15
-    },
-    {
-      "weights": [
-        0.5,
-        0.1,
-        0.4
-      ],
-      "budget": 1,
-      "method": "spread",
-      "reached": 10,
-      "won": false,
-      "health": 0,
+      "health": 1,
       "deaths": 7,
-      "recruits": 49
+      "recruits": 58,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
         0.5,
-        0.1,
-        0.4
-      ],
-      "budget": 1,
-      "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 1,
-      "recruits": 17
-    },
-    {
-      "weights": [
-        0.5,
-        0.1,
-        0.4
-      ],
-      "budget": 1,
-      "method": "random",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 11,
-      "recruits": 48
-    },
-    {
-      "weights": [
-        0.3,
-        0.5,
-        0.2
-      ],
-      "budget": 0.55,
-      "method": "spread",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 11,
-      "recruits": 54
-    },
-    {
-      "weights": [
-        0.3,
-        0.5,
-        0.2
-      ],
-      "budget": 0.55,
-      "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 1,
-      "recruits": 18
-    },
-    {
-      "weights": [
-        0.3,
-        0.5,
-        0.2
-      ],
-      "budget": 0.55,
-      "method": "random",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 6,
-      "recruits": 58
-    },
-    {
-      "weights": [
-        0.3,
-        0.5,
-        0.2
+        0.4,
+        0.1
       ],
       "budget": 0.8,
+      "method": "focus",
+      "reached": 10,
+      "won": true,
+      "health": 8,
+      "deaths": 2,
+      "recruits": 69,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.4,
+        0.1
+      ],
+      "budget": 0.8,
+      "method": "random",
+      "reached": 10,
+      "won": false,
+      "health": 0,
+      "deaths": 3,
+      "recruits": 45,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.4,
+        0.1
+      ],
+      "budget": 1,
       "method": "spread",
       "reached": 5,
       "won": false,
       "health": 0,
       "deaths": 8,
-      "recruits": 10
+      "recruits": 20,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.4,
+        0.1
+      ],
+      "budget": 1,
+      "method": "focus",
+      "reached": 10,
+      "won": true,
+      "health": 41,
+      "deaths": 6,
+      "recruits": 68,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.4,
+        0.1
+      ],
+      "budget": 1,
+      "method": "random",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 7,
+      "recruits": 11,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.1,
+        0.4
+      ],
+      "budget": 0.55,
+      "method": "spread",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 11,
+      "recruits": 13,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.1,
+        0.4
+      ],
+      "budget": 0.55,
+      "method": "focus",
+      "reached": 10,
+      "won": true,
+      "health": 76,
+      "deaths": 5,
+      "recruits": 51,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.1,
+        0.4
+      ],
+      "budget": 0.55,
+      "method": "random",
+      "reached": 10,
+      "won": false,
+      "health": 0,
+      "deaths": 7,
+      "recruits": 52,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.1,
+        0.4
+      ],
+      "budget": 0.8,
+      "method": "spread",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 4,
+      "recruits": 18,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.1,
+        0.4
+      ],
+      "budget": 0.8,
+      "method": "focus",
+      "reached": 10,
+      "won": true,
+      "health": 51,
+      "deaths": 5,
+      "recruits": 56,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.1,
+        0.4
+      ],
+      "budget": 0.8,
+      "method": "random",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 3,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.1,
+        0.4
+      ],
+      "budget": 1,
+      "method": "spread",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 14,
+      "recruits": 17,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.1,
+        0.4
+      ],
+      "budget": 1,
+      "method": "focus",
+      "reached": 10,
+      "won": false,
+      "health": 0,
+      "deaths": 7,
+      "recruits": 58,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.5,
+        0.1,
+        0.4
+      ],
+      "budget": 1,
+      "method": "random",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 4,
+      "recruits": 18,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.3,
+        0.5,
+        0.2
+      ],
+      "budget": 0.55,
+      "method": "spread",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 2,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.3,
+        0.5,
+        0.2
+      ],
+      "budget": 0.55,
+      "method": "focus",
+      "reached": 2,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 7,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.3,
+        0.5,
+        0.2
+      ],
+      "budget": 0.55,
+      "method": "random",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 5,
+      "recruits": 16,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.3,
+        0.5,
+        0.2
+      ],
+      "budget": 0.8,
+      "method": "spread",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 1,
+      "recruits": 20,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -1081,8 +1245,10 @@
       "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 1,
-      "recruits": 21
+      "deaths": 3,
+      "recruits": 21,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -1095,8 +1261,10 @@
       "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 1,
-      "recruits": 15
+      "deaths": 2,
+      "recruits": 24,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -1109,8 +1277,10 @@
       "reached": 10,
       "won": true,
       "health": 16,
-      "deaths": 8,
-      "recruits": 56
+      "deaths": 6,
+      "recruits": 65,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -1123,8 +1293,10 @@
       "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 1,
-      "recruits": 23
+      "deaths": 0,
+      "recruits": 26,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -1135,10 +1307,12 @@
       "budget": 1,
       "method": "random",
       "reached": 10,
-      "won": false,
-      "health": 0,
+      "won": true,
+      "health": 29,
       "deaths": 11,
-      "recruits": 59
+      "recruits": 67,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -1147,12 +1321,110 @@
         0.5
       ],
       "budget": 0.55,
+      "method": "spread",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 2,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.3,
+        0.2,
+        0.5
+      ],
+      "budget": 0.55,
+      "method": "focus",
+      "reached": 2,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 4,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.3,
+        0.2,
+        0.5
+      ],
+      "budget": 0.55,
+      "method": "random",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 2,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.3,
+        0.2,
+        0.5
+      ],
+      "budget": 0.8,
+      "method": "spread",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 6,
+      "recruits": 18,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.3,
+        0.2,
+        0.5
+      ],
+      "budget": 0.8,
+      "method": "focus",
+      "reached": 10,
+      "won": false,
+      "health": 0,
+      "deaths": 7,
+      "recruits": 54,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.3,
+        0.2,
+        0.5
+      ],
+      "budget": 0.8,
+      "method": "random",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 4,
+      "recruits": 18,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.3,
+        0.2,
+        0.5
+      ],
+      "budget": 1,
       "method": "spread",
       "reached": 5,
       "won": false,
       "health": 0,
       "deaths": 7,
-      "recruits": 13
+      "recruits": 19,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -1160,69 +1432,15 @@
         0.2,
         0.5
       ],
-      "budget": 0.55,
+      "budget": 1,
       "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 4,
-      "recruits": 13
-    },
-    {
-      "weights": [
-        0.3,
-        0.2,
-        0.5
-      ],
-      "budget": 0.55,
-      "method": "random",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 6,
-      "recruits": 13
-    },
-    {
-      "weights": [
-        0.3,
-        0.2,
-        0.5
-      ],
-      "budget": 0.8,
-      "method": "spread",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 6,
-      "recruits": 6
-    },
-    {
-      "weights": [
-        0.3,
-        0.2,
-        0.5
-      ],
-      "budget": 0.8,
-      "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 1,
-      "recruits": 17
-    },
-    {
-      "weights": [
-        0.3,
-        0.2,
-        0.5
-      ],
-      "budget": 0.8,
-      "method": "random",
       "reached": 10,
       "won": false,
       "health": 0,
       "deaths": 7,
-      "recruits": 50
+      "recruits": 56,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -1231,264 +1449,270 @@
         0.5
       ],
       "budget": 1,
-      "method": "spread",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 3,
-      "recruits": 51
-    },
-    {
-      "weights": [
-        0.3,
-        0.2,
-        0.5
-      ],
-      "budget": 1,
-      "method": "focus",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 5,
-      "recruits": 48
-    },
-    {
-      "weights": [
-        0.3,
-        0.2,
-        0.5
-      ],
-      "budget": 1,
-      "method": "random",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 4,
-      "recruits": 49
-    },
-    {
-      "weights": [
-        0.4,
-        0.3,
-        0.3
-      ],
-      "budget": 0.55,
-      "method": "spread",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 6,
-      "recruits": 13
-    },
-    {
-      "weights": [
-        0.4,
-        0.3,
-        0.3
-      ],
-      "budget": 0.55,
-      "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 1,
-      "recruits": 15
-    },
-    {
-      "weights": [
-        0.4,
-        0.3,
-        0.3
-      ],
-      "budget": 0.55,
-      "method": "random",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 8,
-      "recruits": 47
-    },
-    {
-      "weights": [
-        0.4,
-        0.3,
-        0.3
-      ],
-      "budget": 0.8,
-      "method": "spread",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 6,
-      "recruits": 51
-    },
-    {
-      "weights": [
-        0.4,
-        0.3,
-        0.3
-      ],
-      "budget": 0.8,
-      "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 1,
-      "recruits": 17
-    },
-    {
-      "weights": [
-        0.4,
-        0.3,
-        0.3
-      ],
-      "budget": 0.8,
-      "method": "random",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 3,
-      "recruits": 16
-    },
-    {
-      "weights": [
-        0.4,
-        0.3,
-        0.3
-      ],
-      "budget": 1,
-      "method": "spread",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 6,
-      "recruits": 9
-    },
-    {
-      "weights": [
-        0.4,
-        0.3,
-        0.3
-      ],
-      "budget": 1,
-      "method": "focus",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 2,
-      "recruits": 56
-    },
-    {
-      "weights": [
-        0.4,
-        0.3,
-        0.3
-      ],
-      "budget": 1,
-      "method": "random",
-      "reached": 10,
-      "won": true,
-      "health": 37,
-      "deaths": 8,
-      "recruits": 54
-    },
-    {
-      "weights": [
-        1,
-        1,
-        1
-      ],
-      "budget": 0.55,
-      "method": "spread",
-      "reached": 10,
-      "won": false,
-      "health": 0,
-      "deaths": 10,
-      "recruits": 48
-    },
-    {
-      "weights": [
-        1,
-        1,
-        1
-      ],
-      "budget": 0.55,
-      "method": "focus",
-      "reached": 5,
-      "won": false,
-      "health": 0,
-      "deaths": 1,
-      "recruits": 16
-    },
-    {
-      "weights": [
-        1,
-        1,
-        1
-      ],
-      "budget": 0.55,
       "method": "random",
       "reached": 5,
       "won": false,
       "health": 0,
       "deaths": 2,
-      "recruits": 13
+      "recruits": 19,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
-        1,
-        1,
-        1
+        0.4,
+        0.3,
+        0.3
       ],
-      "budget": 0.8,
+      "budget": 0.55,
       "method": "spread",
-      "reached": 10,
-      "won": true,
-      "health": 14,
-      "deaths": 13,
-      "recruits": 54
-    },
-    {
-      "weights": [
-        1,
-        1,
-        1
-      ],
-      "budget": 0.8,
-      "method": "focus",
       "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 1,
-      "recruits": 17
+      "deaths": 6,
+      "recruits": 14,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
-        1,
-        1,
-        1
+        0.4,
+        0.3,
+        0.3
       ],
-      "budget": 0.8,
+      "budget": 0.55,
+      "method": "focus",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 3,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.4,
+        0.3,
+        0.3
+      ],
+      "budget": 0.55,
       "method": "random",
       "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 5,
-      "recruits": 11
-    },
-    {
-      "weights": [
-        1,
-        1,
-        1
-      ],
-      "budget": 1,
-      "method": "spread",
-      "reached": 10,
-      "won": true,
-      "health": 2,
       "deaths": 12,
-      "recruits": 61
+      "recruits": 16,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.4,
+        0.3,
+        0.3
+      ],
+      "budget": 0.8,
+      "method": "spread",
+      "reached": 10,
+      "won": false,
+      "health": 0,
+      "deaths": 26,
+      "recruits": 58,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.4,
+        0.3,
+        0.3
+      ],
+      "budget": 0.8,
+      "method": "focus",
+      "reached": 10,
+      "won": true,
+      "health": 100,
+      "deaths": 5,
+      "recruits": 61,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.4,
+        0.3,
+        0.3
+      ],
+      "budget": 0.8,
+      "method": "random",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 5,
+      "recruits": 18,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.4,
+        0.3,
+        0.3
+      ],
+      "budget": 1,
+      "method": "spread",
+      "reached": 10,
+      "won": true,
+      "health": 88,
+      "deaths": 6,
+      "recruits": 59,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.4,
+        0.3,
+        0.3
+      ],
+      "budget": 1,
+      "method": "focus",
+      "reached": 10,
+      "won": true,
+      "health": 53,
+      "deaths": 6,
+      "recruits": 63,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        0.4,
+        0.3,
+        0.3
+      ],
+      "budget": 1,
+      "method": "random",
+      "reached": 10,
+      "won": true,
+      "health": 100,
+      "deaths": 2,
+      "recruits": 59,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        1,
+        1,
+        1
+      ],
+      "budget": 0.55,
+      "method": "spread",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 6,
+      "recruits": 17,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        1,
+        1,
+        1
+      ],
+      "budget": 0.55,
+      "method": "focus",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 9,
+      "recruits": 17,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        1,
+        1,
+        1
+      ],
+      "budget": 0.55,
+      "method": "random",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 2,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        1,
+        1,
+        1
+      ],
+      "budget": 0.8,
+      "method": "spread",
+      "reached": 10,
+      "won": false,
+      "health": 0,
+      "deaths": 6,
+      "recruits": 60,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        1,
+        1,
+        1
+      ],
+      "budget": 0.8,
+      "method": "focus",
+      "reached": 1,
+      "won": false,
+      "health": 0,
+      "deaths": 0,
+      "recruits": 3,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        1,
+        1,
+        1
+      ],
+      "budget": 0.8,
+      "method": "random",
+      "reached": 5,
+      "won": false,
+      "health": 0,
+      "deaths": 4,
+      "recruits": 17,
+      "startingGold": 200,
+      "startingUnits": 0
+    },
+    {
+      "weights": [
+        1,
+        1,
+        1
+      ],
+      "budget": 1,
+      "method": "spread",
+      "reached": 10,
+      "won": false,
+      "health": 0,
+      "deaths": 6,
+      "recruits": 68,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -1498,11 +1722,13 @@
       ],
       "budget": 1,
       "method": "focus",
-      "reached": 10,
+      "reached": 1,
       "won": false,
       "health": 0,
-      "deaths": 2,
-      "recruits": 54
+      "deaths": 0,
+      "recruits": 4,
+      "startingGold": 200,
+      "startingUnits": 0
     },
     {
       "weights": [
@@ -1515,8 +1741,10 @@
       "reached": 5,
       "won": false,
       "health": 0,
-      "deaths": 10,
-      "recruits": 5
+      "deaths": 6,
+      "recruits": 21,
+      "startingGold": 200,
+      "startingUnits": 0
     }
   ]
 }

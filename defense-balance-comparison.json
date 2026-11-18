@@ -1,36 +1,88 @@
 {
   "tickSeconds": 0.016666666666666666,
-  "baselineCommit": "0520208",
-  "baseline": {
+  "baselineCommit": "87999bf",
+  "previousOpening": {
+    "gold": 230,
+    "units": 5,
     "cases": 108,
-    "reached10": 95,
-    "cleared10": 85
+    "reached10": 51,
+    "cleared10": 17,
+    "rewardFactor": 0.85
   },
   "comparison": [
     {
-      "rewardFactor": 0.65,
-      "cases": 108,
-      "reached10": 40,
-      "cleared10": 4
-    },
-    {
-      "rewardFactor": 0.75,
-      "cases": 108,
-      "reached10": 43,
-      "cleared10": 10
-    },
-    {
       "rewardFactor": 0.85,
+      "opening": {
+        "gold": 200,
+        "units": 0
+      },
       "cases": 108,
-      "reached10": 51,
-      "cleared10": 17
+      "reached10": 25,
+      "cleared10": 9
     },
     {
       "rewardFactor": 1,
+      "opening": {
+        "gold": 200,
+        "units": 0
+      },
       "cases": 108,
-      "reached10": 57,
-      "cleared10": 30
+      "reached10": 30,
+      "cleared10": 15
+    },
+    {
+      "rewardFactor": 1.01,
+      "opening": {
+        "gold": 200,
+        "units": 0
+      },
+      "cases": 108,
+      "reached10": 30,
+      "cleared10": 15
+    },
+    {
+      "rewardFactor": 1.02,
+      "opening": {
+        "gold": 200,
+        "units": 0
+      },
+      "cases": 108,
+      "reached10": 30,
+      "cleared10": 17
+    },
+    {
+      "rewardFactor": 1.03,
+      "opening": {
+        "gold": 200,
+        "units": 0
+      },
+      "cases": 108,
+      "reached10": 33,
+      "cleared10": 19
+    },
+    {
+      "rewardFactor": 1.04,
+      "opening": {
+        "gold": 200,
+        "units": 0
+      },
+      "cases": 108,
+      "reached10": 32,
+      "cleared10": 18
     }
   ],
-  "note": "One run per scripted recruitment policy and seed. Not a human win-rate estimate. Current balance changes HP, abilities, enemy defenses, boss behavior and gold together."
+  "selectedRewardFactor": 1.02,
+  "selectedClearGold": [
+    70,
+    80,
+    90,
+    100,
+    145,
+    135,
+    155,
+    175,
+    195,
+    265
+  ],
+  "note": "Same 108 recruitment policies, seeds and placement priorities. Each new-opening run begins with 200G and zero units. No scripted refunds. This suite is not a human win-rate prediction."
 }

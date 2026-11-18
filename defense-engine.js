@@ -3,8 +3,9 @@ export const TROOPS={
  infantry:{name:'보병',cost:30,hp:200,damage:17,interval:1.1,range:.15,lane:true,row:1,armor:.4,role:'방패 방어',description:'같은 길을 막고 받는 피해를 40% 줄여요. 근접 공격은 적 방어율 55%p를 무시해 방패병에게 강해요.'},
  cavalry:{name:'기병',cost:60,hp:140,damage:23,interval:.65,range:.32,lane:true,row:2,armor:.1,role:'광역 돌진',description:'6초마다 2배 피해로 돌진해 방어율을 3초간 50%p 낮추고, 주변 적에게 공격력 60%의 피해를 줘요.'}
 };
+export const START_GOLD=200;
 export const CLEAR_GOLD=[70,80,90,100,140,130,150,170,190,260];
-export const STANDARD_BALANCE={rewardFactor:.85,hpScale:1,lateGrowth:.14,captainHp:6000,warlordHp:15000};
+export const STANDARD_BALANCE={rewardFactor:1.02,hpScale:1,lateGrowth:.14,captainHp:6000,warlordHp:15000};
 export const SLOTS=[{x:.28,y:.255,wall:true},{x:.5,y:.255,wall:true},{x:.72,y:.255,wall:true},{x:.27,y:.585,wall:false},{x:.5,y:.585,wall:false},{x:.73,y:.585,wall:false}];
 export function unitStats(type,tier=1){
  const spec=TROOPS[type];if(!spec||![1,2,3].includes(tier))return null;
@@ -22,8 +23,7 @@ export function wavePlan(wave){
 export class DefenseGame{
  constructor(balance={}){this.balance={...STANDARD_BALANCE,...balance};this.reset();}
  reset(){
-  this.wave=1;this.phase='prep';this.gold=400;this.health=100;this.kills=0;this.deaths=0;this.enemies=[];this.effects=[];this.strikes=[];this.slots=Array(6).fill(null);this.clock=0;this.id=0;this.reward=0;
-  this.recruit(0,'archer');this.recruit(1,'archer');this.recruit(3,'infantry');this.recruit(3,'infantry');this.recruit(4,'infantry');
+  this.wave=1;this.phase='prep';this.gold=START_GOLD;this.health=100;this.kills=0;this.deaths=0;this.enemies=[];this.effects=[];this.strikes=[];this.slots=Array(6).fill(null);this.clock=0;this.id=0;this.reward=0;
  }
  refreshSquad(index){
   const slot=this.slots[index];if(!slot)return;
@@ -51,9 +51,10 @@ export class DefenseGame{
   }
   this.refreshSquad(index);return {ok:true,merged:mergedTier!==null,tier:mergedTier||highestTier(slot),message:mergedTier?`${spec.name} 합체! ${mergedTier}단계로 성장했어요.`:`${spec.name} 1명 배치 · 5명 모이면 자동 합체`};
  }
+ refundValue(index){return this.phase==='prep'&&this.slots[index]?Math.floor(this.slots[index].spent*.7):0;}
  sell(index){
   if(this.phase!=='prep'||!this.slots[index])return {ok:false,message:'준비 중인 부대를 선택해주세요.'};
-  const gold=Math.floor(this.slots[index].spent*.7);this.gold+=gold;this.slots[index]=null;return {ok:true,message:`살아남은 부대를 회수하고 금화 ${gold}를 돌려받았어요.`};
+  const gold=this.refundValue(index);this.gold+=gold;this.slots[index]=null;return {ok:true,refund:gold,message:`살아남은 부대를 회수하고 금화 ${gold}를 돌려받았어요.`};
  }
  start(){
   if(this.phase!=='prep'||!this.slots.some(Boolean))return false;
