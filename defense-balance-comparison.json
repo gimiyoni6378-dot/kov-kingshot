@@ -1,0 +1,36 @@
+{
+  "tickSeconds": 0.016666666666666666,
+  "baselineCommit": "0520208",
+  "baseline": {
+    "cases": 108,
+    "reached10": 95,
+    "cleared10": 85
+  },
+  "comparison": [
+    {
+      "rewardFactor": 0.65,
+      "cases": 108,
+      "reached10": 40,
+      "cleared10": 4
+    },
+    {
+      "rewardFactor": 0.75,
+      "cases": 108,
+      "reached10": 43,
+      "cleared10": 10
+    },
+    {
+      "rewardFactor": 0.85,
+      "cases": 108,
+      "reached10": 51,
+      "cleared10": 17
+    },
+    {
+      "rewardFactor": 1,
+      "cases": 108,
+      "reached10": 57,
+      "cleared10": 30
+    }
+  ],
+  "note": "One run per scripted recruitment policy and seed. Not a human win-rate estimate. Current balance changes HP, abilities, enemy defenses, boss behavior and gold together."
+}
