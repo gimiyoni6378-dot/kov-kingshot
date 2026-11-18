@@ -101,3 +101,37 @@ Automated checks passed: `tests/defense.mjs`, `defense-combat.mjs`, `defense-vis
 Residual gaps: physical phone touch/GPU/first-load performance, real 20-user concurrent session testing, frame-by-frame inspection of all short-lived FX, persistence, production reward verification. None is represented as completed. The browser runs combat locally; no real account or activity ledger is changed by the prototype.
 
 No actionable P0/P1/P2 issue remains within this inspected revision scope. Suggested P3 follow-up: smoother animation frames and additional sprite-edge cleanup after player feedback.
+
+
+# Revision: empty 200G opening and explicit refunds
+
+final result: passed
+
+User-requested change supersedes all historical starter-army/balance counts above: every fresh/reset game now begins with **zero soldiers and 200 gold**. Empty pads in the new source state are intentional. The same 108 policy definitions, seeds and 60Hz simulation tick were retained. Every output row records its actual startingGold=200 and startingUnits=0. Current results: 30/108 reach wave 10, 17/108 clear. Gold was recalibrated with rewardFactor=1.02; no alternate starting army or hidden money is injected in the actual balance simulation. The previous opening is reproduced separately only as a labeled comparison case.
+
+## Browser evidence
+
+- Live route: https://gimiyoni6378-dot.github.io/kov-kingshot/defense.html
+- Opening screenshot: `/workspace/shared/kov-defense-empty-start.jpg`, 600×718 (header and battlefield crop). Shows wallet 200, six empty pads, no soldiers. Start remains disabled until an army is deployed.
+- Refund controls screenshot: `/workspace/shared/kov-defense-refund-controls.jpg`, 592×557 (deployment section crop; heading overhang is clipped by the deliberate section crop). Shows separate add-one and **부대 회수 · +56G** actions for two archers. Actual game layout is not clipped.
+- Browser viewport 1180×757 CSS px, DPR 1; portrait shell 600px, no density normalization. Existing background, sprites, bust portraits and typography preserved. The new controls are real 44px-minimum buttons and wrap on narrow screens.
+
+## Verified interaction sequence
+
+1. Fresh load: gold200, occupied pads0, start disabled.
+2. Empty top pad creates one archer: 200→160.
+3. Clicking occupied pad selects freely: stays160, unit count stays1.
+4. Explicit add-one: 160→120, two archers; refund displays56.
+5. Refund: 120→176, pad becomes empty, start disabled, refund action disappears.
+6. Buy five infantry using one empty-pad click plus four explicit add-one clicks: 176→26; five merge into one tier2 infantry, HP1200/1200; refund displays105.
+7. Refund merged squad: 26→131; squad removed and action disappears.
+8. Latest deployed accessibility label says selection / add / refund, rather than claiming occupied-pad clicks recruit.
+9. Fresh reload again: gold200, occupied pads0, start disabled. Single archer refund separately confirmed at160→188.
+
+Application error log: none after excluding unrelated extension messages. No account or real activity ledger is touched.
+
+## Tests and review
+
+Passing: defense-controls (free selection, exact70% refund, merge-paid basis, no dead-squad/double refund); defense-combat; defense engine (empty start/reset, placement, recruitment, legal ten-wave mixed win, failure and one-time rewards); defense-visuals; defense-balance (every one of108 starts empty/200G; about17 wins); current script output saves exactly17 wins. Recruitment/refund actions are intentionally preparation-only.
+
+No new character/scene assets were changed. The revised opening and controls were reviewed in the browser; no actionable P0/P1/P2 issue remains in this scoped change. Physical-phone viewport/performance and human win rate remain unmeasured; scripted outcomes are not a probability claim.
