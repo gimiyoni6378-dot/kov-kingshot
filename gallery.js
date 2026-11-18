@@ -1,4 +1,5 @@
-import {client, user, authReady, showAuth, friendly} from './auth.js?v=1';
+import {openComments} from './comments.js?v=1';
+import {client, user, authReady, showAuth, friendly} from './auth.js?v=2';
 const $ = (selector) => document.querySelector(selector);
 const menu = $('.main-nav');
 $('.menu-toggle').addEventListener('click', () => {
@@ -30,7 +31,7 @@ function renderPost(post) {
     $('#detail-author').textContent = meta.textContent;
     $('#detail-image').src = image.src; $('#detail-image').alt = post.title;
     $('#delete-button').hidden = post.author_id !== user?.id;
-    status('#detail-status', ''); $('#detail-dialog').showModal();
+    status('#detail-status', ''); $('#detail-dialog').showModal(); openComments(post.id);
   });
   return button;
 }
@@ -77,14 +78,14 @@ $('#post-form').addEventListener('submit', async event => {
     uploadedPath = null;
     $('#post-form').reset(); $('#photo-preview').hidden = true;
     if (previewUrl) URL.revokeObjectURL(previewUrl);
-    $('#write-dialog').close(); await loadPosts(true);
+    $('#write-dialog').close(); await loadPosts(true); status('#status','글을 등록했어요. 마이페이지에서 활동 포인트를 확인해보세요.');
   } catch(error) {
     if (uploadedPath) await client.storage.from('gallery').remove([uploadedPath]);
     status('#write-status', friendly(error));
   } finally { $('#post-submit').disabled = false; }
 });
 $('#delete-button').addEventListener('click', async () => {
-  if (!selectedPost || selectedPost.author_id !== user?.id || !confirm('이 사진과 글을 삭제할까요?')) return;
+  if (!selectedPost || selectedPost.author_id !== user?.id || !confirm('이 사진과 글을 삭제할까요? 글과 연결된 댓글의 포인트도 회수돼요.')) return;
   $('#delete-button').disabled = true;
   try {
     const {data,error} = await client.from('gallery_posts').delete().eq('id',selectedPost.id).eq('author_id',user.id).select('id');
