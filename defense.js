@@ -1,4 +1,4 @@
-import {createAccountGame} from './defense-account.js?v=2';
+import {createAccountGame} from './defense-account.js?v=3';
 import {recordGame,rewardForStage} from './defense-replay.js?v=2';
 import {choosePad} from './defense-controls.js?v=1';
 import {formation,portraitLayout,RUN_FRAMES,runFrame,FX_RECTS} from './defense-visuals.js?v=1';

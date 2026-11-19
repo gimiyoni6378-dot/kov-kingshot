@@ -1,0 +1,6 @@
+.author-rank{display:inline-flex;flex-shrink:0;align-items:center;gap:3px;border:1px solid #d3c9a8;border-radius:5px;padding:2px 5px;background:#f0ebd8;color:#586343;font-size:10px;font-weight:800;line-height:1.4;white-space:nowrap}
+.author-rank.is-tg{border-color:#caa660;background:#fff1cb;color:#875b28}
+.author-rank img{width:22px;height:22px;object-fit:contain}
+.author-rank.rank-loading,.author-rank.rank-unavailable{font-weight:500;color:#8b826d;background:transparent;border-color:#dfd6c2;font-size:9px}
+.author-tg-generated{display:block;flex-shrink:0;width:22px;height:22px;background-image:url('./assets/tg/tg-9-10.png');background-size:83.931px 41.966px;background-position:-11.733px -10.03px;background-repeat:no-repeat}
+.author-tg-generated[data-tier="10"]{background-position:-50.198px -10.03px}

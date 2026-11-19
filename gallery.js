@@ -1,7 +1,7 @@
 import {canDeletePost,deleteGalleryPost} from './gallery-delete.js?v=1';
-import {openComments} from './comments.js?v=4';
+import {openComments} from './comments.js?v=5';
 import {authorIdentity,refreshAuthorRanks} from './author-ranks.js?v=1';
-import {client, user, authReady, showAuth, friendly} from './auth.js?v=2';
+import {client, user, authReady, showAuth, friendly} from './auth.js?v=3';
 const $ = (selector) => document.querySelector(selector);
 const menu = $('.main-nav');
 $('.menu-toggle').addEventListener('click', () => {

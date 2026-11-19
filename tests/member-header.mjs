@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+const {parseHTML}=await import(process.env.DOM_MODULE||'linkedom');
+const {document}=parseHTML('<html><body><button class="menu-toggle"></button><nav class="main-nav open"><span id="member-name" class="member-name"></span></nav></body></html>');globalThis.document=document;
+const {createMemberHeader}=await import('../member-header.js');
+let user={id:'one',user_metadata:{nickname:'헬코기'}},points=100;
+const client={rpc:async name=>{assert.equal(name,'kov_my_activity');return {data:{points}};}};
+const container=document.querySelector('#member-name'),header=createMemberHeader(container,()=>client,()=>user);
+header.setMember(user);await header.refresh();assert.equal(container.firstElementChild.textContent,'Lv.2');assert.equal(container.lastElementChild.textContent,'헬코기');
+points=12900;await header.refresh();assert.equal(container.firstElementChild.textContent,'TG10');assert.equal(container.querySelector('.author-tg-generated').dataset.tier,'10');
+points=0;user={id:'two',user_metadata:{nickname:'<script>hello</script>'}};header.setMember(user);await header.refresh();assert.equal(container.firstElementChild.textContent,'Lv.1');assert.equal(container.querySelector('script'),null);
+user=null;header.setMember(user);assert.equal(container.textContent,'');await header.refresh();assert.equal(container.textContent,'');
+let resolve;user={id:'one',user_metadata:{nickname:'one'}};header.setMember(user);
+const slowClient={rpc:()=>new Promise(r=>{resolve=r;})};const second=createMemberHeader(container,()=>slowClient,()=>user);second.setMember(user);const pending=second.refresh();user=null;second.setMember(null);resolve({data:{points:12900}});await pending;assert.equal(container.textContent,'','Delayed rank cannot reappear after logout');
+console.log('PASS: current Lv/TG before nickname, new-member Lv1, safe nickname, account switch, logout and stale-request guard');

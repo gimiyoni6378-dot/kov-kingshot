@@ -1,5 +1,5 @@
 import {authorIdentity,refreshAuthorRanks} from './author-ranks.js?v=1';
-import {client,user,showAuth,friendly} from './auth.js?v=2';
+import {client,user,showAuth,friendly} from './auth.js?v=3';
 const $=selector=>document.querySelector(selector);
 let postId,offset=0,version=0,loading=false;
 function setupError(error){return /PGRST205|42P01/.test(error?.code||'')?'댓글 기능을 준비하고 있어요. 설정 완료 후 다시 이용해주세요.':friendly(error);}

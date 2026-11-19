@@ -1,7 +1,9 @@
+import {createMemberHeader} from './member-header.js?v=1';
 const $ = selector => document.querySelector(selector);
 document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
 const config = window.KOV_GALLERY_CONFIG || {};
 export let client, user;
+const memberHeader=createMemberHeader($('#member-name'),()=>client,()=>user);
 let signup = false;
 const redirectTo = new URL('./gallery.html', location.href).href;
 const status = (selector, message) => { $(selector).textContent = message; };
@@ -18,7 +20,7 @@ export function friendly(error) {
 }
 function setMember(session) {
   user = session?.user || null;
-  $('#member-name').textContent = user ? (user.user_metadata?.nickname || 'KOV 멤버') : '';
+  memberHeader.setMember(user);
   $('#auth-button').hidden = Boolean(user);
   $('#logout-button').hidden = !user;
   if ($('#signup-button')) $('#signup-button').hidden = Boolean(user);
