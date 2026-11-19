@@ -69,3 +69,7 @@ Cavalry now uses the same rotating lane selection as infantry: full own-lane dam
 Uncompensated change allowed31/108 scripted wins versus9 previously. Selected compensation keeps early enemy HP and gold rewards unchanged: post-wave3 HP growth.20→.28; captain base6800→7800 (effective10951.2); warlord18000→24000 (effective33696). The nonmage suite now reaches stage10 in36/108 cases and wins6/108, four with mixed recruitment. See defense-cavalry-comparison.json and scripts/compare-defense-cavalry.mjs. These are policy counts, not human probabilities.
 
 The verifier retains v4, with the prior cavalry pattern and420/72 mage, for existing runs. Deploy the latest generated function (GET balance_version5); no SQL migration.
+
+## Playable guaranteed-mage practice
+
+`defense-practice.html` uses the current production engine/renderer and generated placement controls, with an isolated local adapter. A naturally successful fixed non-UUID run ID guarantees a first-stage mage; starting army remains empty with200gold. Mage is preselected. Players can place it on a wall, summon normal troops, run all waves, pause/speed up and reset. The page has no auth/config initialization, account RPCs, saved account records or reward submission. Local replay settlement always returns0points. `node scripts/build-defense-practice.mjs` regenerates practice HTML/controller from production templates. No server redeployment required.

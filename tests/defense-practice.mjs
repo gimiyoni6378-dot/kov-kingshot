@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+const {parseHTML}=await import(process.env.DOM_MODULE||'linkedom');
+const {document}=parseHTML('<html><body><div id="account-gate"></div><span id="game-member"></span><button id="practice-reset"></button></body></html>');globalThis.document=document;
+globalThis.fetch=()=>{throw new Error('Practice must not send account requests');};
+const {DefenseGame,seedFromRunId}=await import('../defense-engine.js');
+const {recordGame}=await import('../defense-replay.js');
+const {createAccountGame,PRACTICE_RUN_ID}=await import('../defense-practice-account.js');
+const game=new DefenseGame(),commands=recordGame(game);let resets=0;
+const adapter=createAccountGame(()=>{resets++;commands.length=0;game.reset();},id=>game.reset(seedFromRunId(id)));
+await Promise.resolve();assert.equal(adapter.ready,true);assert.equal(game.wizardAvailable,true);assert.equal(game.gold,200);assert.ok(game.slots.every(s=>s===null));
+assert.equal(game.recruit(0,'wizard').ok,true);assert.equal(game.slots[0].members[0].hp,420);game.start();for(let tick=0;tick<36000&&game.phase==='battle';tick++)game.step(1/60);
+const result=await adapter.settle(commands);assert.equal(result.awarded,0);assert.equal(result.points,0);assert.ok(result.cleared>=1);assert.equal(adapter.ready,false);
+adapter.restart();assert.equal(adapter.ready,true);assert.equal(game.wizardAvailable,true);assert.equal(resets,2);assert.ok(!/^[a-f0-9-]{36}$/i.test(PRACTICE_RUN_ID));
+const js=await readFile(new URL('../defense-practice.js',import.meta.url),'utf8'),html=await readFile(new URL('../defense-practice.html',import.meta.url),'utf8');
+assert.ok(!js.includes("from './defense-account.js"));assert.ok(!html.includes('gallery-config.js'));assert.ok(!html.includes('id="auth-form"'));assert.ok(html.includes('포인트는 적립되지 않아요.')||html.includes('포인트 적립 없음'));
+console.log('PASS: guaranteed mage seed, normal empty200G start,420HP, playable clear/reset, zero rewards, non-account run ID and no real account adapter/config');

@@ -183,3 +183,7 @@ Clarified requested first stage as the first merge of five archers (engine tier2
 ## Cross-lane cavalry
 
 Cavalry rotates across nearby lanes with full own-lane/70% cross-lane damage; original charge/splash/armor break retained. Targeted test confirms three separate primary hits with exact damage, charge debuff and old-v4/current server replay parity. Existing engine/combat/controls/visuals/wizard/reward suites pass. Six-candidate comparison selected unchanged early HP/gold and stronger mid/late enemy growth/boss HP, reducing uncompensated31/108 wins to6/108 (four mixed). Live authenticated v5 settlement awaits owner function redeployment. No new art or SQL change. Historical comparison scripts pinned to archived engines for reproducibility.
+
+## Playable fire-mage practice
+
+Added an explicit no-login/no-points practice page with guaranteed first-stage mage, default mage selection and reset action. Engine and renderer are shared; only the account adapter is replaced by a local non-UUID fixture. Unit integration check covers guaranteed seed, empty200G start,420HP mage, legal wave clear, reset and zero rewards, with fetch disabled. Generated practice entry has no production account adapter or gallery config. Visual/interactions pending live Pages check.
