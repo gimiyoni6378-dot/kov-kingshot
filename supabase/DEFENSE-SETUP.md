@@ -41,3 +41,9 @@ Tests: `node tests/defense-rewards.mjs`. SQL 권한·중복·계정별 적립 �
 SQL은 다시 실행하지 않습니다. Edge Functions → 기존 `defense-reward` → Code에서 `index.ts` 내용을 최신 `defense-reward-dashboard.ts` 전체로 교체한 뒤 Deploy updates를 누르세요. 기존 JWT 설정은 유지합니다. 새 함수를 추가로 만들지 않습니다.
 
 최신 함수는 GET 응답에 `balance_version: 2`를 반환합니다. 사이트는 이 값을 확인한 뒤 게임을 열기 때문에 기존 함수 상태에서는 ‘난이도 업데이트를 준비하고 있어요’ 안내가 나옵니다. 배포 후 게임에서 다시 연결 또는 새로고침하세요. 이전 업데이트 전에 시작한 판의 저장 기록은 이전 엔진으로 정산하고, 이후 새 판부터 강화된 규칙을 사용합니다.
+
+## 보병3열 공격·화염 마법사 업데이트
+
+SQL 재실행 없이 기존 defense-reward 함수의 index.ts를 최신 defense-reward-dashboard.ts 전체로 교체하고 Deploy updates 하세요. 최신 GET 응답은 balance_version3입니다. 이전2였던 함수로는 새 게임이 열리지 않습니다. 사이트를 새로고침하면 새 규칙이 적용됩니다.
+
+서버가 소유권을 확인한 run UUID로 히든 확률 시드를 계산합니다. 클라이언트가 전송한 히든 등장 여부나 임의 시드를 믿지 않습니다. 이전 버전 플레이 기록도 해당 버전 엔진으로 검증합니다.

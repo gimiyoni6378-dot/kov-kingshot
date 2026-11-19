@@ -9,7 +9,7 @@ class Recorded extends DefenseGame{
  constructor(balance){super(balance);commands=recordGame(this);}
  step(dt){const previous=this.phase;super.step(dt);if(previous==='battle'&&['cleared','won'].includes(this.phase))checkpoints.push({stage:this.wave,commands:structuredClone(commands)});}
 }
-assert.equal(simulate([.8,.1,.1],1,'focus',35,{},Recorded).won,true);
+assert.equal(simulate([.3,.5,.2],1,'focus',80,{},Recorded).won,true);
 assert.equal(checkpoints.length,10);
 for(const point of checkpoints){const result=verifyReplay(point.commands);assert.deepEqual(serverReplay(point.commands),result);assert.equal(result.cleared,point.stage);assert.equal(result.points,rewardForStage(point.stage));assert.ok(result.ticks>0);}
 assert.equal(verifyReplay([]).points,0);
@@ -24,7 +24,7 @@ console.log('PASS: legal full replay, all ten reward boundaries, refunds, invali
 assert.throws(()=>verifyRunReplay([],1,LEGACY_SESSION_CUTOFF),/Legacy rules expired/);
 assert.equal(verifyRunReplay([],1,'2026-11-18T17:00:00Z').points,0);
 assert.equal(verifyRunReplay([],2,'2026-11-19T00:00:00Z').points,0);
-assert.throws(()=>verifyReplay([],3),/Unsupported/);
+assert.throws(()=>verifyReplay([],4),/Unsupported/);
 const {DefenseGame:Legacy}=await import('../defense-engine-v1.js');
 let oldCommands;
 class OldRecorded extends Legacy{constructor(balance){super(balance);oldCommands=recordGame(this);}}

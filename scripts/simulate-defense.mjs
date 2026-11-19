@@ -7,10 +7,10 @@ export function simulate(weights,budgetFraction,method,seed=1,balance={},GameCla
  for(let wave=1;wave<=10;wave++){
   const budget=game.gold*budgetFraction;let spent=0;
   for(let step=0;step<200;step++){
-   const choices=Object.entries(TROOPS).filter(([type,spec],i)=>weights[i]>0&&spec.cost<=game.gold&&spent+spec.cost<=budget);
+   const choices=['archer','infantry','cavalry'].map(type=>[type,TROOPS[type]]).filter(([type,spec],i)=>weights[i]>0&&spec.cost<=game.gold&&spent+spec.cost<=budget);
    if(!choices.length)break;
-   const total=choices.reduce((sum,[type])=>sum+weights[Object.keys(TROOPS).indexOf(type)],0);let value=random()*total;
-   const type=(choices.find(([type])=>(value-=weights[Object.keys(TROOPS).indexOf(type)])<=0)||choices.at(-1))[0];
+   const total=choices.reduce((sum,[type])=>sum+weights[['archer','infantry','cavalry'].indexOf(type)],0);let value=random()*total;
+   const type=(choices.find(([type])=>(value-=weights[['archer','infantry','cavalry'].indexOf(type)])<=0)||choices.at(-1))[0];
    let slots=(type==='archer'?[0,1,2]:[3,4,5]).filter(i=>!game.slots[i]||game.slots[i].type===type);
    if(method==='spread')slots.sort((a,b)=>(game.slots[a]?.spent||0)-(game.slots[b]?.spent||0));
    else if(method==='focus')slots.sort((a,b)=>(game.slots[b]?.spent||0)-(game.slots[a]?.spent||0));

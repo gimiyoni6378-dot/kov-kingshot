@@ -1,7 +1,7 @@
 import {client,user,authReady,showAuth,friendly} from './auth.js?v=3';
-import {REPLAY_VERSION,BALANCE_VERSION} from './defense-replay.js?v=2';
+import {REPLAY_VERSION,BALANCE_VERSION} from './defense-replay.js?v=3';
 const $=s=>document.querySelector(s);
-export function createAccountGame(onSessionChange){
+export function createAccountGame(onSessionChange,onRunReady=()=>{}){
  let run=null,member=null,ticket=0,busy=false;
  const key=id=>`kov-defense-pending:${id}`;
  const storage={get(id){try{return JSON.parse(localStorage.getItem(key(id))||'null');}catch{return null;}},set(id,value){try{localStorage.setItem(key(id),JSON.stringify(value));}catch{}},remove(id){try{localStorage.removeItem(key(id));}catch{}}};
@@ -22,7 +22,7 @@ export function createAccountGame(onSessionChange){
    const {data,error}=await client.rpc('kov_defense_begin');
    if(attempt!==ticket||user?.id!==member)return;
    if(error||!data?.id)throw new Error('게임 보상 서버 설정이 필요해요. 운영자가 설정을 마치면 다시 연결해주세요.');
-   run=data;$('#account-gate').hidden=true;
+   run=data;onRunReady(data.id);$('#account-gate').hidden=true;
    $('#game-member').textContent=`${user.user_metadata?.nickname||'KOV 멤버'}의 도전`;
   }catch(error){if(attempt===ticket)gate(error.message||friendly(error));}
  }
