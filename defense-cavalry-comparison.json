@@ -1,0 +1,88 @@
+{
+  "note": "108 scripted strategies without mage placement, not human win probabilities",
+  "baseline": {
+    "reached10": 25,
+    "cleared10": 9
+  },
+  "selected": 1,
+  "candidates": [
+    {
+      "balance": {
+        "rewardFactor": 0.97,
+        "hpScale": 1.404,
+        "lateGrowth": 0.2,
+        "captainHp": 6800,
+        "warlordHp": 18000,
+        "crossLaneDamage": 0.7
+      },
+      "reached10": 57,
+      "cleared10": 31,
+      "mixedWins": 21
+    },
+    {
+      "balance": {
+        "rewardFactor": 0.97,
+        "hpScale": 1.404,
+        "lateGrowth": 0.28,
+        "captainHp": 7800,
+        "warlordHp": 24000,
+        "crossLaneDamage": 0.7
+      },
+      "reached10": 36,
+      "cleared10": 6,
+      "mixedWins": 4
+    },
+    {
+      "balance": {
+        "rewardFactor": 0.94,
+        "hpScale": 1.404,
+        "lateGrowth": 0.28,
+        "captainHp": 7800,
+        "warlordHp": 24000,
+        "crossLaneDamage": 0.7
+      },
+      "reached10": 37,
+      "cleared10": 6,
+      "mixedWins": 4
+    },
+    {
+      "balance": {
+        "rewardFactor": 0.94,
+        "hpScale": 1.404,
+        "lateGrowth": 0.32,
+        "captainHp": 8500,
+        "warlordHp": 26000,
+        "crossLaneDamage": 0.7
+      },
+      "reached10": 26,
+      "cleared10": 1,
+      "mixedWins": 0
+    },
+    {
+      "balance": {
+        "rewardFactor": 0.97,
+        "hpScale": 1.55,
+        "lateGrowth": 0.2,
+        "captainHp": 6800,
+        "warlordHp": 18000,
+        "crossLaneDamage": 0.7
+      },
+      "reached10": 44,
+      "cleared10": 17,
+      "mixedWins": 11
+    },
+    {
+      "balance": {
+        "rewardFactor": 0.97,
+        "hpScale": 1.62,
+        "lateGrowth": 0.25,
+        "captainHp": 6800,
+        "warlordHp": 18000,
+        "crossLaneDamage": 0.7
+      },
+      "reached10": 29,
+      "cleared10": 8,
+      "mixedWins": 5
+    }
+  ]
+}

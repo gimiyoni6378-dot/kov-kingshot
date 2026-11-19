@@ -9,8 +9,8 @@ assert.equal(game.wizardAvailable,true);assert.equal(game.slots.filter(Boolean).
 assert.equal(game.recruit(3,'wizard').ok,false);assert.equal(game.gold,200);
 assert.equal(game.recruit(0,'wizard').ok,true);assert.equal(game.gold,200);assert.equal(game.slots[0].members[0].hp,unitStats('archer',2).hp);assert.equal(TROOPS.wizard.damage,unitStats('archer',2).damage);
 assert.equal(game.recruit(1,'wizard').ok,false);assert.equal(game.slots[0].counts[0],1);
-assert.deepEqual(serverReplay(commands,4,runId),verifyReplay(commands,4,runId));
-assert.throws(()=>verifyReplay(commands,4,'not-the-winning-run'),'Cannot forge wizard unlock with another run');
+assert.deepEqual(serverReplay(commands,5,runId),verifyReplay(commands,5,runId));
+assert.throws(()=>verifyReplay(commands,5,'not-the-winning-run'),'Cannot forge wizard unlock with another run');
 game.sell(0);assert.equal(game.recruit(1,'wizard').ok,false);for(let wave=2;wave<=10;wave++)game.rollHidden(wave);assert.equal(game.wizardAvailable,false);
 assert.equal(new DefenseGame({},seed).wizardAvailable,true,'Reset must preserve roll when using same run seed');
 // Distribution sanity check; probability is a fixed1% per eligible wave.

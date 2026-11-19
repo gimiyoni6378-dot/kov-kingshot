@@ -1,4 +1,4 @@
-import {TROOPS,SLOTS,squadHealth} from './defense-engine.js?v=6';
+import {TROOPS,SLOTS,squadHealth} from './defense-engine.js?v=7';
 import {formation,RUN_FRAMES,runFrame,FX_RECTS} from './defense-visuals.js?v=1';
 const troopRects={archer:[[58,40,330,299],[458,40,330,299],[865,35,345,305]],infantry:[[65,430,290,306],[468,430,305,308],[883,412,310,327]],cavalry:[[48,810,325,380],[457,810,327,379],[862,790,350,400]]};
 export function createDefenseRenderer({canvas,game,images,reduced=false,getMergeFlash=()=>null}){

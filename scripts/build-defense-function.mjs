@@ -6,7 +6,9 @@ const previous=await readFile(new URL('../defense-engine-v2.js',import.meta.url)
 const previousClass='const PreviousDefenseGame=(()=>{\n'+previous.replace(/export /g,'')+'\nreturn DefenseGame;})();\n';
 const mageV3=await readFile(new URL('../defense-engine-v3.js',import.meta.url),'utf8');
 const mageV3Class='const MageV3DefenseGame=(()=>{\n'+mageV3.replace(/export /g,'')+'\nreturn DefenseGame;})();\n';
+const mageV4=await readFile(new URL('../defense-engine-v4.js',import.meta.url),'utf8');
+const mageV4Class='const MageV4DefenseGame=(()=>{\n'+mageV4.replace(/export /g,'')+'\nreturn DefenseGame;})();\n';
 const replay=(await readFile(new URL('../defense-replay.js',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'');
-await writeFile(new URL('../supabase/functions/defense-reward/replay.js',import.meta.url),engine+'\n'+legacyClass+previousClass+mageV3Class+replay);
+await writeFile(new URL('../supabase/functions/defense-reward/replay.js',import.meta.url),engine+'\n'+legacyClass+previousClass+mageV3Class+mageV4Class+replay);
 const handler=(await readFile(new URL('../supabase/functions/defense-reward/index.ts',import.meta.url),'utf8')).replace("import {verifyRunReplay,REPLAY_VERSION,BALANCE_VERSION} from './replay.js';",'');
-await writeFile(new URL('../supabase/defense-reward-dashboard.ts',import.meta.url),engine.replace(/export /g,'')+'\n'+legacyClass+previousClass+mageV3Class+replay.replace(/export /g,'')+'\n'+handler);
+await writeFile(new URL('../supabase/defense-reward-dashboard.ts',import.meta.url),engine.replace(/export /g,'')+'\n'+legacyClass+previousClass+mageV3Class+mageV4Class+replay.replace(/export /g,'')+'\n'+handler);

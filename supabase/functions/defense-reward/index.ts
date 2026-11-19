@@ -4,7 +4,7 @@ const headers={'Access-Control-Allow-Origin':'https://gimiyoni6378-dot.github.io
 const reply=(data:unknown,status=200)=>new Response(JSON.stringify(data),{status,headers});
 Deno.serve(async req=>{
  if(req.method==='OPTIONS')return new Response(null,{status:204,headers});
- if(req.method==='GET')return reply({balance_version:BALANCE_VERSION,supported_balance_versions:[1,2,3,4]});
+ if(req.method==='GET')return reply({balance_version:BALANCE_VERSION,supported_balance_versions:[1,2,3,4,5]});
  if(req.method!=='POST')return reply({error:'POST required'},405);
  try{
   const token=req.headers.get('Authorization')?.replace(/^Bearer\s+/i,'');if(!token)return reply({error:'로그인이 필요해요.'},401);

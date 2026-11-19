@@ -179,3 +179,7 @@ Live Pages visual fixture verified after successful deployment5bc5131: red-cloak
 ## Mage first-merge stat correction
 
 Clarified requested first stage as the first merge of five archers (engine tier2). Mage now has420HP/72damage; .9s interval, all-target fire,1% one-only unlock and free wall placement remain. Tests verify exact parity with archer tier2,72 damage to every visible target, seeded replay parity, and retained v3 engine70/12 compatibility. Generated Edge code syntax passes. Server balance gate now requires4; owner redeployment pending. Nonmage policy balance is unchanged.
+
+## Cross-lane cavalry
+
+Cavalry rotates across nearby lanes with full own-lane/70% cross-lane damage; original charge/splash/armor break retained. Targeted test confirms three separate primary hits with exact damage, charge debuff and old-v4/current server replay parity. Existing engine/combat/controls/visuals/wizard/reward suites pass. Six-candidate comparison selected unchanged early HP/gold and stronger mid/late enemy growth/boss HP, reducing uncompensated31/108 wins to6/108 (four mixed). Live authenticated v5 settlement awaits owner function redeployment. No new art or SQL change. Historical comparison scripts pinned to archived engines for reproducibility.

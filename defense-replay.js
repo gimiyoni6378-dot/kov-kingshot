@@ -1,9 +1,10 @@
-import {DefenseGame,seedFromRunId} from './defense-engine.js?v=6';
+import {DefenseGame,seedFromRunId} from './defense-engine.js?v=7';
 import {DefenseGame as LegacyDefenseGame} from './defense-engine-v1.js';
 import {DefenseGame as PreviousDefenseGame} from './defense-engine-v2.js';
 import {DefenseGame as MageV3DefenseGame} from './defense-engine-v3.js';
+import {DefenseGame as MageV4DefenseGame} from './defense-engine-v4.js';
 export const REPLAY_VERSION=1;
-export const BALANCE_VERSION=4;
+export const BALANCE_VERSION=5;
 // Only sessions already existing at the upgrade may settle using the old rules.
 export const LEGACY_SESSION_CUTOFF='2026-11-18T17:21:39Z';
 export function verifyRunReplay(commands,balanceVersion,createdAt,runId){
@@ -14,9 +15,9 @@ export const rewardForStage=stage=>stage===10?100:stage===9?50:stage>=6&&stage<=
 // Only legal preparation commands are accepted. Battles are replayed at the
 // same fixed 60 Hz as the browser; the client never supplies a trusted score.
 export function verifyReplay(commands,balanceVersion=BALANCE_VERSION,runId){
- if(![1,2,3,4].includes(balanceVersion))throw new Error('Unsupported balance version');
+ if(![1,2,3,4,5].includes(balanceVersion))throw new Error('Unsupported balance version');
  if(!Array.isArray(commands)||commands.length>3000)throw new Error('Invalid replay');
- const game=balanceVersion===1?new LegacyDefenseGame():balanceVersion===2?new PreviousDefenseGame():balanceVersion===3?new MageV3DefenseGame({},runId?seedFromRunId(runId):0):new DefenseGame({},runId?seedFromRunId(runId):0);let cleared=0,ticks=0;
+ const game=balanceVersion===1?new LegacyDefenseGame():balanceVersion===2?new PreviousDefenseGame():balanceVersion===3?new MageV3DefenseGame({},runId?seedFromRunId(runId):0):balanceVersion===4?new MageV4DefenseGame({},runId?seedFromRunId(runId):0):new DefenseGame({},runId?seedFromRunId(runId):0);let cleared=0,ticks=0;
  for(const cmd of commands){
   if(!cmd||typeof cmd!=='object')throw new Error('Invalid command');
   let ok=false;

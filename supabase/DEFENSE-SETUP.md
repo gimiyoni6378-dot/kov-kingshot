@@ -51,3 +51,7 @@ SQL 재실행 없이 기존 defense-reward 함수의 index.ts를 최신 defense-
 ## 화염 마법사 능력치 정정
 
 최신 코드는 첫 합체 궁병 기준으로 마법사 HP420/공격72이며 GET balance_version4를 반환합니다. 기존 defense-reward의 index.ts 전체를 최신 파일로 교체하고 Deploy updates 하세요. SQL 변경은 없습니다. 기존v3 기록은 이전 능력치로 검증됩니다.
+
+## 기병3열 공격 업데이트
+
+기존 defense-reward의 index.ts를 최신 defense-reward-dashboard.ts 전체로 교체하고 Deploy updates 하세요. GET balance_version5가 최신입니다. SQL은 변경하지 않습니다. 사이트를 새로고침해 새 도전을 시작하세요. 이전v4 플레이 기록은 이전 엔진으로 검증합니다.

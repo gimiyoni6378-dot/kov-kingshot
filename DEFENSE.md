@@ -61,3 +61,11 @@ Redeploy the latest generated defense-reward-dashboard.ts. No SQL changes. New f
 ## Fire mage stat clarification / balance version4
 
 The requested first stage means the FIRST MERGE of five archers, which the normal engine names tier2. Mage base HP/attack are therefore420/72, not70/12. Its .9s global fire attack and all unlock/placement rules are unchanged. v3 is retained in the verifier for pending weaker-mage runs. New sessions require server balance_version4. No SQL change. The9/108 nonmage policy result remains a baseline that does not model rare-mage use.
+
+## Cross-lane cavalry / balance version5
+
+Cavalry now uses the same rotating lane selection as infantry: full own-lane damage,70% primary damage against another lane, within its existing .32 vertical range. Its .65s attack interval, six-second double-damage charge, splash and three-second armor break remain. It still blocks its own lane.
+
+Uncompensated change allowed31/108 scripted wins versus9 previously. Selected compensation keeps early enemy HP and gold rewards unchanged: post-wave3 HP growth.20→.28; captain base6800→7800 (effective10951.2); warlord18000→24000 (effective33696). The nonmage suite now reaches stage10 in36/108 cases and wins6/108, four with mixed recruitment. See defense-cavalry-comparison.json and scripts/compare-defense-cavalry.mjs. These are policy counts, not human probabilities.
+
+The verifier retains v4, with the prior cavalry pattern and420/72 mage, for existing runs. Deploy the latest generated function (GET balance_version5); no SQL migration.

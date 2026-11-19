@@ -5,7 +5,7 @@ assert.equal(suite.cases,108);
 assert.deepEqual(suite.startingConditions,{gold:200,units:0});
 assert.ok(suite.results.every(run=>run.startingGold===200&&run.startingUnits===0));
 assert.ok(suite.cleared10>=6&&suite.cleared10<=12,'Hard balance should retain a few legal winning policies');
-assert.ok(suite.reached10<=30,'Fewer sampled policies should reach the final wave');
+assert.ok(suite.reached10<=40,'Fewer sampled policies should reach the final wave');
 assert.ok(suite.results.filter(run=>run.reached>=5).length>=65,'The opening must remain playable');
 assert.ok(suite.results.some(run=>run.won&&run.weights.filter(w=>w>0).length>1),'Mixed recruitment must remain viable');
 console.log(`PASS: ${suite.reached10}/108 reach wave 10, ${suite.cleared10}/108 clear; mixed recruitment wins remain viable`);

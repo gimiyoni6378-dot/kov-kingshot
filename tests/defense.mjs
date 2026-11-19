@@ -14,7 +14,7 @@ const refund=Math.floor(g.slots[0].spent*.7),oldGold=g.gold;assert.equal(g.refun
 g.reset();assert.equal(g.gold,200);assert.ok(g.slots.every(slot=>slot===null));
 for(let w=1;w<=10;w++){const bosses=wavePlan(w).filter(e=>e.kind!=='raider');assert.equal(bosses.length,[5,10].includes(w)?1:0);if(w===5)assert.equal(bosses[0].kind,'captain');if(w===10)assert.equal(bosses[0].kind,'warlord');}
 const {simulate}=await import('../scripts/simulate-defense.mjs');
-const winning=simulate([.3,.5,.2],1,'focus',80);assert.equal(winning.won,true);assert.equal(winning.startingGold,200);assert.equal(winning.startingUnits,0);
+const winning=simulate([.1,.1,.8],.8,'focus',50);assert.equal(winning.won,true);assert.equal(winning.startingGold,200);assert.equal(winning.startingUnits,0);
 assert.equal(simulate([1,0,0],1,'spread',7).won,false);
 // A legally purchased opening can clear wave 1; no repeated reward or skipped preparation.
 g=new DefenseGame();g.recruit(0,'archer');g.recruit(1,'archer');g.recruit(3,'infantry');g.recruit(4,'infantry');g.start();for(let i=0;i<10000&&g.phase==='battle';i++)g.step(.05);
