@@ -23,7 +23,7 @@ async function load(reset=false){
    meta.className='comment-meta';name.append(authorIdentity(comment));time.dateTime=comment.created_at;time.textContent=new Date(comment.created_at).toLocaleDateString('ko-KR',{timeZone:'Asia/Seoul'});name.append(time);
    body.textContent=comment.body;remove.type='button';remove.className='text-button';remove.textContent='삭제';remove.setAttribute('aria-label',`${comment.nickname}의 댓글 삭제`);remove.dataset.commentOwner=comment.author_id;remove.hidden=comment.author_id!==user?.id;
    remove.addEventListener('click',async()=>{
-    if(comment.author_id!==user?.id || !confirm('댓글을 삭제할까요? 지급된 10P도 회수돼요.'))return;
+    if(comment.author_id!==user?.id || !confirm('댓글을 삭제할까요? 이 댓글로 받은 포인트도 회수돼요.'))return;
     remove.disabled=true;
     try{
      const {data,error}=await client.from('gallery_comments').delete().eq('id',comment.id).eq('author_id',user.id).select('id');
@@ -46,7 +46,7 @@ $('#comment-form').addEventListener('submit',async event=>{
  try{
   const {error}=await client.from('gallery_comments').insert({post_id:id,author_id:user.id,nickname:(user.user_metadata?.nickname||'KOV 멤버').slice(0,24),body});
   if(error)throw error;
-  if(id===postId){$('#comment-body').value='';await load(true);$('#comments-status').textContent='댓글을 등록했어요. +10P가 쌓였어요.';}
+  if(id===postId){$('#comment-body').value='';await load(true);$('#comments-status').textContent='댓글을 등록했어요. 적립 내역은 마이페이지에서 확인해주세요.';}
  }catch(error){if(id===postId)$('#comments-status').textContent=setupError(error);}
  finally{$('#comment-submit').disabled=false;}
 });
