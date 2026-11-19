@@ -22,7 +22,7 @@ document.addEventListener('kov:session', () => {
 function imageUrl(path) { return client.storage.from('gallery').getPublicUrl(path).data.publicUrl; }
 function renderPost(post) {
   const entry=document.createElement('article');entry.className='post-entry';
-  const remove=document.createElement('button');remove.type='button';remove.className='post-delete-button card-delete';remove.textContent='내 글 삭제';remove.dataset.postOwner=post.author_id;remove.dataset.postId=post.id;remove.hidden=!canDeletePost(post,user);remove.setAttribute('aria-label',`${post.title} · 내 게시물 삭제`);remove.addEventListener('click',()=>removePost(post));
+  const remove=document.createElement('button');remove.type='button';remove.className='post-delete-button card-delete';remove.textContent='글 삭제';remove.dataset.postOwner=post.author_id;remove.dataset.postId=post.id;remove.hidden=!canDeletePost(post,user);remove.setAttribute('aria-label',`${post.title} · 글 삭제`);remove.addEventListener('click',()=>removePost(post));
   const button = document.createElement('button');
   button.type = 'button'; button.className = 'post-card';
   const image = document.createElement('img'); image.src = imageUrl(post.image_path); image.alt = post.title; image.loading = 'lazy';
