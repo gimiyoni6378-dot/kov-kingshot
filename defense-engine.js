@@ -1,7 +1,7 @@
 export const TROOPS={
  archer:{name:'궁병',cost:40,hp:70,damage:12,interval:.9,range:.58,lane:false,row:0,armor:0,role:'관통 지원',description:'세 갈래 길을 지원해요. 적 방어율 20%p를 무시하며 뒤의 적 1명에게 공격력 30%의 관통 피해를 줘요.'},
  infantry:{name:'보병',cost:30,hp:200,damage:17,interval:1.1,range:.15,lane:false,row:1,armor:.4,role:'방패 방어',description:'자기 길을 막으며 세 갈래 길의 적을 공격해요. 다른 길에는 70% 피해를 주며, 받는 피해를 40% 줄여요. 근접 공격은 적 방어율 55%p를 무시해 방패병에게 강해요.'},
- wizard:{name:'화염 마법사',cost:0,hp:70,damage:12,interval:.9,range:2,lane:false,row:3,armor:0,role:'히든 · 전장 전체 화염',description:'매 웨이브 준비 시 1% 확률로 단 한 번 합류해요. 성벽에 무료 배치하며, 나타난 모든 적에게 화염 피해를 줘요. 합체와 추가 모집은 없어요.'},
+ wizard:{name:'화염 마법사',cost:0,hp:420,damage:72,interval:.9,range:2,lane:false,row:3,armor:0,role:'히든 · 전장 전체 화염',description:'매 웨이브 준비 시 1% 확률로 단 한 번 합류해요. 성벽에 무료 배치하며, 나타난 모든 적에게 화염 피해를 줘요. 궁병 5명의 첫 합체와 같은 HP·공격력을 가져요. 합체와 추가 모집은 없어요.'},
  cavalry:{name:'기병',cost:60,hp:140,damage:23,interval:.65,range:.32,lane:true,row:2,armor:.1,role:'광역 돌진',description:'6초마다 2배 피해로 돌진해 방어율을 3초간 50%p 낮추고, 주변 적에게 공격력 60%의 피해를 줘요.'}
 };
 export const START_GOLD=200;

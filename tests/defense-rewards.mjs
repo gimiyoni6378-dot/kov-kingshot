@@ -24,7 +24,7 @@ console.log('PASS: legal full replay, all ten reward boundaries, refunds, invali
 assert.throws(()=>verifyRunReplay([],1,LEGACY_SESSION_CUTOFF),/Legacy rules expired/);
 assert.equal(verifyRunReplay([],1,'2026-11-18T17:00:00Z').points,0);
 assert.equal(verifyRunReplay([],2,'2026-11-19T00:00:00Z').points,0);
-assert.throws(()=>verifyReplay([],4),/Unsupported/);
+assert.throws(()=>verifyReplay([],5),/Unsupported/);
 const {DefenseGame:Legacy}=await import('../defense-engine-v1.js');
 let oldCommands;
 class OldRecorded extends Legacy{constructor(balance){super(balance);oldCommands=recordGame(this);}}

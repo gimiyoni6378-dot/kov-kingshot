@@ -47,3 +47,7 @@ SQL은 다시 실행하지 않습니다. Edge Functions → 기존 `defense-rewa
 SQL 재실행 없이 기존 defense-reward 함수의 index.ts를 최신 defense-reward-dashboard.ts 전체로 교체하고 Deploy updates 하세요. 최신 GET 응답은 balance_version3입니다. 이전2였던 함수로는 새 게임이 열리지 않습니다. 사이트를 새로고침하면 새 규칙이 적용됩니다.
 
 서버가 소유권을 확인한 run UUID로 히든 확률 시드를 계산합니다. 클라이언트가 전송한 히든 등장 여부나 임의 시드를 믿지 않습니다. 이전 버전 플레이 기록도 해당 버전 엔진으로 검증합니다.
+
+## 화염 마법사 능력치 정정
+
+최신 코드는 첫 합체 궁병 기준으로 마법사 HP420/공격72이며 GET balance_version4를 반환합니다. 기존 defense-reward의 index.ts 전체를 최신 파일로 교체하고 Deploy updates 하세요. SQL 변경은 없습니다. 기존v3 기록은 이전 능력치로 검증됩니다.
