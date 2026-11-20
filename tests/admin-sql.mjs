@@ -4,7 +4,7 @@ const {PGlite}=await import(process.env.PGLITE_MODULE||'@electric-sql/pglite');c
 await db.exec(await readFile('tests/points-bootstrap.sql','utf8'));
 await db.exec(`alter table auth.users add column email text,add column raw_user_meta_data jsonb default '{}',add column created_at timestamptz default now(),add column last_sign_in_at timestamptz;
 create schema storage; create table storage.objects(id uuid primary key default gen_random_uuid(),bucket_id text,name text);alter table storage.objects enable row level security;grant usage on schema storage to authenticated;grant select,delete on storage.objects to authenticated;
-insert into auth.users(id,email,raw_user_meta_data) values ('3fced51a-78eb-4838-8062-aafce3802b1d','owner@example.test','{"nickname":"관리자"}');
+insert into auth.users(id,email,raw_user_meta_data) values ('283ed1f5-6084-47ac-a3df-9b9e217e3477','owner@example.test','{"nickname":"관리자"}');
 update auth.users set email='member@example.test',raw_user_meta_data='{"nickname":"일반 회원"}' where id='11111111-1111-1111-1111-111111111111';
 update auth.users set email='other@example.test' where id='22222222-2222-2222-2222-222222222222';
 insert into storage.objects(bucket_id,name) values('gallery','someone/photo.jpg'),('private','secret.jpg');`);
@@ -20,7 +20,7 @@ assert.equal((await db.query("delete from gallery_posts where id='aaaaaaaa-aaaa-
 assert.equal((await db.query("delete from storage.objects where bucket_id='gallery' returning id")).rows.length,0);
 // User-writable metadata cannot grant the role.
 await db.exec('reset role');await db.exec(`update auth.users set raw_user_meta_data='{"admin":true,"role":"admin"}' where id='22222222-2222-2222-2222-222222222222'`);await db.exec('set role authenticated');assert.equal((await db.query('select kov_is_admin() as yes')).rows[0].yes,false);
-await setUser('3fced51a-78eb-4838-8062-aafce3802b1d');assert.equal((await db.query('select kov_is_admin() as yes')).rows[0].yes,true);
+await setUser('283ed1f5-6084-47ac-a3df-9b9e217e3477');assert.equal((await db.query('select kov_is_admin() as yes')).rows[0].yes,true);
 let data=(await db.query('select kov_admin_members() as result')).rows[0].result;assert.equal(data.total,3);assert.equal(data.stats.members,3);assert.equal(data.members.find(m=>m.nickname==='일반 회원').points,10);assert.equal(data.members.find(m=>m.nickname==='일반 회원').rank_label,'Lv.1');
 data=(await db.query("select kov_admin_members('일반',0) as result")).rows[0].result;assert.equal(data.total,1);assert.equal(data.members[0].email,'member@example.test');
 assert.equal((await db.query("select kov_admin_members('%',0) as result")).rows[0].result.total,0);

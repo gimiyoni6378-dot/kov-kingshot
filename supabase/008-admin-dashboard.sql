@@ -55,9 +55,9 @@ create policy gallery_admin_select_files on storage.objects for select to authen
 -- Only the account explicitly supplied by the site owner receives this role.
 do $$
 begin
- if not exists(select 1 from auth.users where id='3fced51a-78eb-4838-8062-aafce3802b1d'::uuid) then
+ if not exists(select 1 from auth.users where id='283ed1f5-6084-47ac-a3df-9b9e217e3477'::uuid) then
   raise exception 'Owner UID not found. Select the KOV Supabase project before running this SQL.';
  end if;
- insert into public.kov_admins(user_id) values('3fced51a-78eb-4838-8062-aafce3802b1d') on conflict(user_id) do nothing;
+ insert into public.kov_admins(user_id) values('283ed1f5-6084-47ac-a3df-9b9e217e3477') on conflict(user_id) do nothing;
 end $$;
 commit;
