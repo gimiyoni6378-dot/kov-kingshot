@@ -1,15 +1,17 @@
+import {bindLanguageValidation,moderationError} from './moderation.js?v=1';
 import {authorIdentity,refreshAuthorRanks} from './author-ranks.js?v=1';
 import {client,user,showAuth,friendly} from './auth.js?v=3';
 const $=selector=>document.querySelector(selector);
 let postId,offset=0,version=0,loading=false;
-function setupError(error){return /PGRST205|42P01/.test(error?.code||'')?'댓글 기능을 준비하고 있어요. 설정 완료 후 다시 이용해주세요.':friendly(error);}
+const checkCommentLanguage=bindLanguageValidation([$('#comment-body')],$('#comments-status'));
+function setupError(error){if(moderationError(error))return moderationError(error);return /PGRST205|42P01/.test(error?.code||'')?'댓글 기능을 준비하고 있어요. 설정 완료 후 다시 이용해주세요.':friendly(error);}
 function updateSession(){
  $('#comment-form').hidden=!user;$('#comment-login').hidden=Boolean(user);
  for(const button of document.querySelectorAll('[data-comment-owner]'))button.hidden=button.dataset.commentOwner!==user?.id;
 }
 document.addEventListener('kov:session',updateSession);
 $('#comment-login').addEventListener('click',showAuth);
-export function openComments(id){postId=id;$('#comment-body').value='';updateSession();load(true);}
+export function openComments(id){postId=id;$('#comment-body').value='';checkCommentLanguage();updateSession();load(true);}
 async function load(reset=false){
  if(!postId || (loading&&!reset))return;
  if(reset){version++;offset=0;$('#comments-list').replaceChildren();$('#comments-more').hidden=true;}
@@ -41,6 +43,7 @@ async function load(reset=false){
 $('#comments-more').addEventListener('click',()=>load());
 $('#comment-form').addEventListener('submit',async event=>{
  event.preventDefault();if(!user)return showAuth();
+ if(!checkCommentLanguage())return;
  const body=$('#comment-body').value.trim(),id=postId;if(!body)return $('#comments-status').textContent='댓글 내용을 입력해주세요.';
  $('#comment-submit').disabled=true;
  try{

@@ -9,12 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=6">
+  <link rel="stylesheet" href="./styles.css?v=7">
   <link rel="stylesheet" href="./auth.css?v=4">
 </head>
 <body>
   <header class="site-header">
-    <a class="kov-brand" href="#home" aria-label="KOV 1887 홈"><span class="brand-shield">K</span><span class="brand-type">KOV <small>SERVER 1887</small></span><img class="game-logo" src="./assets/kingshot-logo.png" alt="Kingshot"></a>
+    <a class="kov-brand" href="#home" aria-label="KOV 1887 홈"><img class="brand-emblem" src="./assets/kov-emblem.png" width="46" height="52" alt=""><span class="brand-type">KOV <small>SERVER 1887</small></span></a>
     <button class="menu-toggle" aria-expanded="false" aria-label="메뉴 열기"><span></span><span></span></button>
     <nav class="main-nav" aria-label="주 메뉴"><a href="#story">KOV 소개</a><a href="#strengths">우리의 강점</a><a href="#community">함께하는 방식</a><a href="./gallery.html">갤러리</a><a href="./defense.html">성벽 지키기</a><a href="./mypage.html">마이페이지</a><a class="nav-button" href="#move">이주 문의 <span>→</span></a><span id="member-name" class="member-name"></span><button class="header-auth" id="auth-button" type="button">로그인</button><button class="header-auth signup" id="signup-button" type="button">회원가입</button><button class="header-auth" id="logout-button" type="button" hidden>로그아웃</button></nav>
   </header>
@@ -63,7 +63,7 @@
     <section class="move-cta" id="move"><div class="cta-spark" aria-hidden="true"></div><div class="cta-inner"><div class="section-kicker light"><span class="kicker-icon" aria-hidden="true"></span> 이주 상담 <span class="kicker-line"></span> 04</div><h2>1887로 이주한다면,<br><span>KOV에서 만나요.</span></h2><p>이주 일정과 가입 조건이 궁금하면<br>KOV 간부에게 게임 안에서 메시지 주세요.</p><button class="game-button cream" id="copy-message" type="button"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 3v-14Zm4 4h8m-8 3h5"/></svg><span class="button-label">문의 문구 복사</span> <b>↗</b></button><small id="copy-hint" aria-live="polite">복사한 문구를 게임 내 KOV 간부에게 보내세요.</small></div><div class="cta-art"><img src="./assets/kingshot-battle.png" alt="킹샷의 개성 있는 영웅들"></div></section>
   </main>
 
-  <footer class="site-footer"><a class="kov-brand" href="#home"><span class="brand-shield">K</span><span class="brand-type">KOV <small>SERVER 1887</small></span></a><p>1887 서버에서 함께해요.</p><div class="footer-meta"><span>FAN-MADE ALLIANCE PAGE</span><a href="https://www.centurygames.com/games/kingshot/" target="_blank" rel="noreferrer">Kingshot 공식 게임 사이트 ↗</a></div></footer>
+  <footer class="site-footer"><a class="kov-brand" href="#home"><img class="brand-emblem" src="./assets/kov-emblem.png" width="46" height="52" alt=""><span class="brand-type">KOV <small>SERVER 1887</small></span></a><p>1887 서버에서 함께해요.</p><div class="footer-meta"><span>FAN-MADE ALLIANCE PAGE</span><a href="https://www.centurygames.com/games/kingshot/" target="_blank" rel="noreferrer">Kingshot 공식 게임 사이트 ↗</a></div></footer>
 <dialog id="auth-dialog" class="gallery-dialog"><form id="auth-form"><div class="dialog-top"><h2 id="auth-title">다시 만나요.</h2><button type="button" class="close-button" data-close aria-label="닫기">×</button></div><p id="auth-description">로그인하고 KOV의 순간을 나눠보세요.</p><label id="nickname-label" hidden>게임 닉네임<input id="nickname" maxlength="24" autocomplete="nickname"></label><label>이메일<input id="email" type="email" autocomplete="email" required maxlength="254"></label><label>비밀번호<input id="password" type="password" autocomplete="current-password" required minlength="8" maxlength="128"></label><p id="auth-status" role="status" aria-live="polite"></p><button class="game-button primary" id="auth-submit" type="submit">로그인</button><button class="text-button auth-switch" id="auth-switch" type="button">처음 오셨나요? 회원가입</button><button class="text-button" id="reset-password" type="button">비밀번호를 잊으셨나요?</button></form></dialog>
 <dialog id="reset-dialog" class="gallery-dialog"><form id="reset-form"><div class="dialog-top"><h2>새 비밀번호 설정</h2><button type="button" class="close-button" data-close aria-label="닫기">×</button></div><label>새 비밀번호<input id="new-password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required></label><p id="reset-status" role="status" aria-live="polite"></p><button class="game-button primary" type="submit">비밀번호 변경</button></form></dialog>
 
