@@ -1,9 +1,10 @@
+import {isAdmin} from './admin-access.js?v=1';
 import {POSTS_PER_PAGE,SEARCH_FIELDS,literalSearch,pageGroup} from './board-utils.js?v=1';
 import {bindLanguageValidation,moderationError} from './moderation.js?v=1';
-import {canDeletePost,deleteGalleryPost} from './gallery-delete.js?v=1';
-import {openComments} from './comments.js?v=6';
+import {canDeletePost,deleteGalleryPost} from './gallery-delete.js?v=2';
+import {openComments} from './comments.js?v=7';
 import {authorIdentity,refreshAuthorRanks} from './author-ranks.js?v=1';
-import {client, user, authReady, showAuth, friendly} from './auth.js?v=3';
+import {client, user, authReady, showAuth, friendly} from './auth.js?v=4';
 const $ = (selector) => document.querySelector(selector);
 const menu = $('.main-nav');
 $('.menu-toggle').addEventListener('click', () => {
@@ -18,10 +19,12 @@ $('#write-button').addEventListener('click', () => {
   if (!client || !user) return showAuth();
   status('#write-status',''); $('#write-dialog').showModal();
 });
-document.addEventListener('kov:session', () => {
-  if (selectedPost) $('#delete-button').hidden = !canDeletePost(selectedPost,user);
-  for(const button of document.querySelectorAll('[data-post-owner]'))button.hidden=button.dataset.postOwner!==user?.id;
-});
+function refreshDeleteControls(){
+  if (selectedPost) $('#delete-button').hidden = !canDeletePost(selectedPost,user,isAdmin);
+  for(const button of document.querySelectorAll('[data-post-owner]'))button.hidden=!user||(!isAdmin&&button.dataset.postOwner!==user.id);
+}
+document.addEventListener('kov:session',refreshDeleteControls);
+document.addEventListener('kov:admin',refreshDeleteControls);
 function imageUrl(path) { return client.storage.from('gallery').getPublicUrl(path).data.publicUrl; }
 function renderPost(post,number){
  const entry=document.createElement('li');entry.className='post-entry post-row';
@@ -30,12 +33,12 @@ function renderPost(post,number){
  const title=document.createElement('h3');title.textContent=post.title;button.append(title);
  const author=document.createElement('span');author.className='board-author';author.append(authorIdentity(post));
  const date=document.createElement('time');date.className='post-date';date.dateTime=post.created_at;date.textContent=new Date(post.created_at).toLocaleDateString('ko-KR',{timeZone:'Asia/Seoul'});
- const remove=document.createElement('button');remove.type='button';remove.className='post-delete-button row-delete';remove.textContent='글 삭제';remove.dataset.postOwner=post.author_id;remove.dataset.postId=post.id;remove.hidden=!canDeletePost(post,user);remove.setAttribute('aria-label',`${post.title} · 글 삭제`);remove.addEventListener('click',()=>removePost(post));
+ const remove=document.createElement('button');remove.type='button';remove.className='post-delete-button row-delete';remove.textContent='글 삭제';remove.dataset.postOwner=post.author_id;remove.dataset.postId=post.id;remove.hidden=!canDeletePost(post,user,isAdmin);remove.setAttribute('aria-label',`${post.title} · 글 삭제`);remove.addEventListener('click',()=>removePost(post));
  button.addEventListener('click',()=>{
   selectedPost=post;$('#detail-title').textContent=post.title;$('#detail-body').textContent=post.body;
   $('#detail-author').replaceChildren(authorIdentity(post),date.cloneNode(true));
   $('#detail-image').src=imageUrl(post.image_path);$('#detail-image').alt=post.title;
-  $('#delete-button').hidden=!canDeletePost(post,user);$('#delete-button').dataset.postId=post.id;
+  $('#delete-button').hidden=!canDeletePost(post,user,isAdmin);$('#delete-button').dataset.postId=post.id;
   status('#detail-status','');$('#detail-dialog').showModal();openComments(post.id);
  });
  entry.append(sequence,button,author,date,remove);return entry;
@@ -98,12 +101,12 @@ $('#post-form').addEventListener('submit', async event => {
   } finally { $('#post-submit').disabled = false; }
 });
 async function removePost(post){
- if(deletingPostId||!canDeletePost(post,user))return;
+ if(deletingPostId||!canDeletePost(post,user,isAdmin))return;
  if(!confirm('이 사진과 글을 삭제할까요? 연결된 댓글도 삭제되고, 글·댓글로 받은 포인트가 회수돼요.'))return;
  deletingPostId=post.id;
  for(const button of document.querySelectorAll('[data-post-id]'))if(button.dataset.postId===post.id)button.disabled=true;
  try{
-  const result=await deleteGalleryPost(client,post,user);
+  const result=await deleteGalleryPost(client,post,user,isAdmin);
   if(selectedPost?.id===post.id){$('#detail-dialog').close();selectedPost=null;}
   await loadPosts(true);
   status('#status',result.cleanupFailed?'글은 삭제됐어요. 사진 파일 정리는 관리자 확인이 필요해요.':'게시물을 삭제했어요.');

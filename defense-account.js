@@ -1,4 +1,4 @@
-import {client,user,authReady,showAuth,friendly} from './auth.js?v=3';
+import {client,user,authReady,showAuth,friendly} from './auth.js?v=4';
 import {REPLAY_VERSION,BALANCE_VERSION} from './defense-replay.js?v=5';
 const $=s=>document.querySelector(s);
 export function createAccountGame(onSessionChange,onRunReady=()=>{}){

@@ -48,3 +48,11 @@ The alliance details and ranking wording were supplied by the page requester. Up
 ## 게시글 글자 수 제한
 
 제목은 최대 50자, 본문은 최대 1,000자입니다. 한글 완성형 한 글자는 1자로 계산하며 공백과 문장부호도 입력창 제한에 포함합니다. 기존 프로젝트는 `supabase/007-post-length-limits.sql` 전체를 SQL Editor에서 실행하세요. 기존의 긴 글은 삭제하거나 자르지 않고 새로 등록하거나 수정하는 글에 DB 제한을 적용합니다. Edge Function 재배포는 필요 없습니다.
+
+## 관리자 대시보드
+
+`supabase/008-admin-dashboard.sql` 전체를 기존 프로젝트의 SQL Editor에서 한 번 실행하세요. 이 파일은 사이트 소유자가 지정한 UID가 실제로 존재하는지 확인하고 해당 계정에만 관리자 역할을 부여합니다. Edge Function 재배포는 필요 없습니다. 적용 후 해당 계정으로 로그인하면 ‘관리’ 메뉴가 나타나며 `admin.html`에서 회원의 닉네임·이메일·사이트 레벨·포인트·가입일·최근 로그인일을 조회할 수 있습니다. 한 페이지 25명, 닉네임/이메일 검색을 지원합니다. 최근 로그인은 Supabase가 기록한 마지막 로그인 시각이며 전체 방문/로그인 이력은 아닙니다.
+
+관리자는 갤러리의 다른 회원 글도 삭제할 수 있으며 기존 삭제 트리거에 따라 글·댓글 포인트가 회수됩니다. 사진 삭제 권한은 `gallery` 버킷에 한정됩니다. 일반 회원의 본인 글 삭제 권한은 유지됩니다. 계정 정보 조회는 관리자 확인을 수행하는 제한된 RPC로만 제공하고, `auth.users` 직접 조회나 관리자 역할 테이블 쓰기 권한을 브라우저에 부여하지 않습니다. 이메일·닉네임 또는 사용자 수정 가능 메타데이터로 관리자 여부를 판단하지 않습니다. 관리자 해제는 SQL Editor에서 `public.kov_admins`의 해당 UID 행을 삭제하면 됩니다.
+
+권한 검증: `PGLITE_MODULE=<pglite/dist/index.js 절대경로> node tests/admin-sql.mjs`. 화면 및 계정 전환 검증: `DOM_MODULE=<linkedom/worker.js 절대경로> node tests/admin-ui.mjs`.

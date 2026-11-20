@@ -50,3 +50,5 @@ body{font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optim
 .gallery-invite{display:flex;justify-content:space-between;align-items:center;gap:24px;padding-top:55px;padding-bottom:55px;border-bottom:1px solid #dfd0a8}.gallery-invite h2{font-size:29px;letter-spacing:-.04em;margin:10px 0}.gallery-invite p{font-size:13px;color:#74775f}@media(max-width:620px){.gallery-invite{align-items:flex-start;flex-direction:column}.gallery-invite h2{font-size:26px}}
 
 .kov-brand{gap:10px;text-decoration:none;flex-shrink:0}.brand-emblem{display:block;width:46px;height:52px;object-fit:contain;flex-shrink:0}.kov-brand .brand-type{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:27px;line-height:.9;letter-spacing:.035em;color:#35452b}.kov-brand .brand-type small{font-family:var(--body);font-size:8px;font-weight:700;letter-spacing:.16em;color:#967d4d;margin-top:6px}@media(max-width:620px){.brand-emblem{width:39px;height:45px}.kov-brand .brand-type{font-size:24px}.kov-brand{gap:8px}.kov-brand .brand-type small{font-size:7px;letter-spacing:.12em}}
+
+.main-nav [data-admin-link][hidden]{display:none!important}

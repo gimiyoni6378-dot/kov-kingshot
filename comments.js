@@ -1,6 +1,6 @@
 import {bindLanguageValidation,moderationError} from './moderation.js?v=1';
 import {authorIdentity,refreshAuthorRanks} from './author-ranks.js?v=1';
-import {client,user,showAuth,friendly} from './auth.js?v=3';
+import {client,user,showAuth,friendly} from './auth.js?v=4';
 const $=selector=>document.querySelector(selector);
 let postId,offset=0,version=0,loading=false;
 const checkCommentLanguage=bindLanguageValidation([$('#comment-body')],$('#comments-status'));

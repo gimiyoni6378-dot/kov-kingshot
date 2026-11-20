@@ -1,5 +1,5 @@
 import {createDefenseRenderer} from './defense-renderer.js?v=3';
-import {createAccountGame} from './defense-account.js?v=6';
+import {createAccountGame} from './defense-account.js?v=7';
 import {recordGame,rewardForStage} from './defense-replay.js?v=5';
 import {choosePad} from './defense-controls.js?v=2';
 import {portraitLayout} from './defense-visuals.js?v=1';

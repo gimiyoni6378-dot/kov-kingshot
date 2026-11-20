@@ -1,9 +1,11 @@
+import {createAdminAccess} from './admin-access.js?v=1';
 import {createMemberHeader} from './member-header.js?v=1';
 const $ = selector => document.querySelector(selector);
 document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
 const config = window.KOV_GALLERY_CONFIG || {};
 export let client, user;
 const memberHeader=createMemberHeader($('#member-name'),()=>client,()=>user);
+const adminAccess=createAdminAccess(()=>client,()=>user);
 let signup = false;
 const redirectTo = new URL('./gallery.html', location.href).href;
 const status = (selector, message) => { $(selector).textContent = message; };
@@ -20,11 +22,14 @@ export function friendly(error) {
 }
 function setMember(session) {
   user = session?.user || null;
+  adminAccess.reset();
   memberHeader.setMember(user);
   $('#auth-button').hidden = Boolean(user);
   $('#logout-button').hidden = !user;
   if ($('#signup-button')) $('#signup-button').hidden = Boolean(user);
   document.dispatchEvent(new CustomEvent('kov:session'));
+  // Supabase auth callbacks must return before issuing another API request.
+  setTimeout(()=>adminAccess.refresh(),0);
 }
 function requireClient() {
   if (client) return true;
