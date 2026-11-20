@@ -1,4 +1,4 @@
--- Run after 002-points.sql. Safe to rerun. Assign the owner separately by UID.
+-- Run after 002-points.sql. Safe to rerun. Includes the owner-approved UID assignment.
 begin;
 create table if not exists public.kov_admins (
  user_id uuid primary key references auth.users(id) on delete cascade,
