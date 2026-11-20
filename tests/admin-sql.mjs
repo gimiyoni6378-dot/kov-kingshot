@@ -9,7 +9,7 @@ update auth.users set email='member@example.test',raw_user_meta_data='{"nickname
 update auth.users set email='other@example.test' where id='22222222-2222-2222-2222-222222222222';
 insert into storage.objects(bucket_id,name) values('gallery','someone/photo.jpg'),('private','secret.jpg');`);
 for(const path of ['supabase/002-points.sql','supabase/005-comment-one-point.sql'])await db.exec(await readFile(path,'utf8'));
-const migration=await readFile('supabase/008-admin-dashboard.sql','utf8');await db.exec(migration);await db.exec(migration);
+const migration=await readFile('supabase/008-admin-dashboard.sql','utf8').then(s=>s.replace("owner_email text := 'YOUR_LOGIN_EMAIL'","owner_email text := 'OWNER@example.test'"));await db.exec(migration);await db.exec(migration);
 const setUser=async id=>{await db.exec('reset role');await db.query("select set_config('request.jwt.claim.sub',$1,false)",[id]);await db.exec('set role authenticated');};
 await db.exec('set role anon');await assert.rejects(db.query('select public.kov_admin_members()'),/permission denied/);await db.exec('reset role');
 await setUser('22222222-2222-2222-2222-222222222222');
@@ -29,4 +29,7 @@ assert.equal((await db.query("delete from storage.objects where bucket_id='galle
 assert.equal((await db.query("delete from storage.objects where bucket_id='private' returning id")).rows.length,0);
 await db.exec('reset role');assert.equal((await db.query("select sum(delta)::int as points from point_events where user_id='11111111-1111-1111-1111-111111111111'")).rows[0].points,0);
 await db.exec("delete from kov_admins");await db.exec('set role authenticated');await assert.rejects(db.query('select public.kov_admin_members()'),/Administrator access required/);
+await db.exec('reset role');
+await assert.rejects(db.exec(migration.replace("owner_email text := 'OWNER@example.test'","owner_email text := 'missing@example.test'")),/No account matches this email/);
+await db.exec('rollback');assert.equal((await db.query('select count(*)::int as n from kov_admins')).rows[0].n,0);
 await db.close();console.log('PASS: admin role grants, denied anonymous/member/metadata escalation, member privacy, search, admin post/photo delete, point reversal and role revocation');

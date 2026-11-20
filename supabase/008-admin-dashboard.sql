@@ -1,4 +1,4 @@
--- Run after 002-points.sql. Safe to rerun. Includes the owner-approved UID assignment.
+-- Run after 002-points.sql. Safe to rerun. Set YOUR_LOGIN_EMAIL below before running. No user UID is required.
 begin;
 create table if not exists public.kov_admins (
  user_id uuid primary key references auth.users(id) on delete cascade,
@@ -52,12 +52,25 @@ create policy gallery_admin_remove on storage.objects for delete to authenticate
 drop policy if exists gallery_admin_select_files on storage.objects;
 create policy gallery_admin_select_files on storage.objects for select to authenticated
  using(bucket_id='gallery' and (select public.kov_is_admin()));
--- Only the account explicitly supplied by the site owner receives this role.
+-- Replace YOUR_LOGIN_EMAIL with the email you use to sign in to the KOV site.
+-- This setup runs in SQL Editor only; the website cannot assign admin roles.
 do $$
+declare
+ owner_email text := 'YOUR_LOGIN_EMAIL';
+ owner_id uuid;
 begin
- if not exists(select 1 from auth.users where id='283ed1f5-6084-47ac-a3df-9b9e217e3477'::uuid) then
-  raise exception 'Owner UID not found. Select the KOV Supabase project before running this SQL.';
+ if owner_email='YOUR_LOGIN_EMAIL' or trim(owner_email)='' then
+  raise exception 'Replace YOUR_LOGIN_EMAIL with your KOV login email before running this query.';
  end if;
- insert into public.kov_admins(user_id) values('283ed1f5-6084-47ac-a3df-9b9e217e3477') on conflict(user_id) do nothing;
+ begin
+  select u.id into strict owner_id from auth.users u
+   where lower(u.email)=lower(trim(owner_email));
+ exception
+  when no_data_found then
+   raise exception 'No account matches this email. Check Authentication > Users in the current project.';
+  when too_many_rows then
+   raise exception 'Multiple accounts match this email. No administrator was assigned.';
+ end;
+ insert into public.kov_admins(user_id) values(owner_id) on conflict(user_id) do nothing;
 end $$;
 commit;
