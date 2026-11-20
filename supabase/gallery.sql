@@ -4,8 +4,8 @@ create table if not exists public.gallery_posts (
   id uuid primary key default gen_random_uuid(),
   author_id uuid not null references auth.users(id) on delete cascade,
   nickname text not null check (char_length(trim(nickname)) between 1 and 24),
-  title text not null check (char_length(trim(title)) between 1 and 80),
-  body text not null check (char_length(trim(body)) between 1 and 3000),
+  title text not null check (char_length(trim(title)) between 1 and 50),
+  body text not null check (char_length(trim(body)) between 1 and 1000),
   image_path text not null unique,
   created_at timestamptz not null default now(),
   constraint gallery_owned_image check (

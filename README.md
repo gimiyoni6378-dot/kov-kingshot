@@ -44,3 +44,7 @@ The alliance details and ranking wording were supplied by the page requester. Up
 이는 목록 기반의 텍스트 필터로 모든 비하 표현이나 이미지 속 글자까지 판별하지는 않습니다. 정책은 `moderation/korean-policy.json`에서 관리하고, 변경 후 `node scripts/build-moderation.mjs`로 브라우저 규칙과 SQL을 함께 생성하세요. 변경된 SQL도 다시 실행해야 서버 규칙에 반영됩니다. 입력 중 한글 조합을 방해하지 않으며 허용어와 일반 문장 오탐을 검증합니다.
 
 검증: `node tests/moderation.mjs`, `node tests/board-utils.mjs`, `node tests/gallery-delete.mjs`. 실제 갤러리 컨트롤러의 목록·검색·페이지 이동·상세 열기·업로드 전 차단 테스트는 `DOM_MODULE=<linkedom/worker.js 절대경로> node tests/gallery-board.mjs`, SQL 트리거·권한·포인트 검증은 `PGLITE_MODULE=<pglite/dist/index.js 절대경로> node tests/moderation-sql.mjs`로 실행합니다.
+
+## 게시글 글자 수 제한
+
+제목은 최대 50자, 본문은 최대 1,000자입니다. 한글 완성형 한 글자는 1자로 계산하며 공백과 문장부호도 입력창 제한에 포함합니다. 기존 프로젝트는 `supabase/007-post-length-limits.sql` 전체를 SQL Editor에서 실행하세요. 기존의 긴 글은 삭제하거나 자르지 않고 새로 등록하거나 수정하는 글에 DB 제한을 적용합니다. Edge Function 재배포는 필요 없습니다.
